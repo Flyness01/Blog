@@ -1,46 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { ArrowUpRight, Menu, X, Sparkles, Mail } from "lucide-react";
+import { ArrowUpRight, Menu, X, Sparkles } from "lucide-react";
+import ArticlePage from "./ArticlePage";
 import "./styles.css";
-
-const posts = [
-  {
-    date: "Topic in progress",
-    read: "Reading notes",
-    category: "Operating Systems",
-    title: "Why is it still so hard to write safe parallel code?",
-    excerpt:
-      "Exploring race conditions, memory safety, and the gap between system behavior and a developer’s mental model.",
-    color: "sage",
-  },
-  {
-    date: "Topic in progress",
-    read: "Reading notes",
-    category: "Parallel Processing",
-    title: "What makes parallel programs difficult to debug?",
-    excerpt:
-      "A closer look at nondeterminism, concurrency bugs, and the tools developers use to understand what went wrong.",
-    color: "rose",
-  },
-  {
-    date: "Topic in progress",
-    read: "Reading notes",
-    category: "Systems + HCI",
-    title: "Can systems interfaces be designed for clearer mental models?",
-    excerpt:
-      "Notes on developer experience, system abstractions, and how interface design may affect correctness.",
-    color: "lilac",
-  },
-];
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [viewArticle, setViewArticle] = useState(window.location.hash === "#/writing/hidden-human");
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState({ name: "", text: "" });
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const syncView = () => setViewArticle(window.location.hash === "#/writing/hidden-human");
+    window.addEventListener("hashchange", syncView);
+    return () => window.removeEventListener("hashchange", syncView);
+  }, []);
+
+  const openArticle = () => {
+    window.location.hash = "/writing/hidden-human";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const closeArticle = () => {
+    window.location.hash = "writing";
+    setViewArticle(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -53,16 +42,15 @@ function App() {
           <a href="#home">Home</a>
           <a href="#about">About</a>
           <a href="#disclaimer">Disclaimer</a>
-          <span className="nav-divider" />
-          <a href="#signin">Sign in</a>
-          <a className="subscribe-link" href="#subscribe">Subscribe</a>
         </nav>
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
           {menuOpen ? <X /> : <Menu />}
         </button>
       </header>
 
-      <main>
+      {viewArticle ? (
+        <ArticlePage onBack={closeArticle} />
+      ) : <main>
         <section className="hero" id="home">
           <div className="eyebrow"><span /> Notes from a curious mind</div>
           <h1>I’m learning in public.<br /><em>Come sit with me.</em></h1>
@@ -79,10 +67,10 @@ function App() {
         <section className="featured" id="writing">
           <div className="section-heading">
             <div>
-              <span className="kicker">01 / Planned notes</span>
+              <span className="kicker">01 / Writing</span>
               <h2>Ideas I keep<br /><em>coming back to</em></h2>
             </div>
-            <p>A small archive of questions, observations, and works in progress.</p>
+            <p>Technical writing about systems, parallelism, and the humans who build them.</p>
           </div>
 
           <article className="lead-post">
@@ -95,30 +83,18 @@ function App() {
               <div className="flower" aria-hidden="true">✿</div>
             </div>
             <div className="lead-content">
-              <div className="post-meta"><span>Starting point</span> Topic in progress</div>
+              <div className="post-meta"><span>Published article</span> July 2026 · 4 min read</div>
               <h3>The hidden human in system design</h3>
               <p>
-                My first set of notes asks how the design of operating-system abstractions
-                and developer tools shapes our ability to reason about parallel code safely.
-                Claims and examples will be supported by linked sources as each post is published.
+                How developer expectations, API behavior, and hidden reference-counting
+                operations collide inside the Linux kernel.
               </p>
-              <a href="#comments">Discuss this question <ArrowUpRight size={17} /></a>
+              <button className="article-link" onClick={openArticle}>
+                Read the full article <ArrowUpRight size={17} />
+              </button>
             </div>
           </article>
 
-          <div className="post-grid">
-            {posts.map((post, i) => (
-              <article className="post-card" key={post.title}>
-                <div className={`card-number ${post.color}`}>0{i + 2}</div>
-                <div className="post-meta"><span>{post.category}</span> {post.date} · {post.read}</div>
-                <h3>{post.title}</h3>
-                <p>{post.excerpt}</p>
-                <a href={`#post-${i + 2}`} aria-label={`Read ${post.title}`}>
-                  Discuss this topic <ArrowUpRight size={16} />
-                </a>
-              </article>
-            ))}
-          </div>
         </section>
 
         <section className="about" id="about">
@@ -181,20 +157,7 @@ function App() {
           </div>
         </section>
 
-        <section className="account-note" id="signin">
-          <span>Reader accounts</span>
-          <p>Secure sign-in is coming soon.</p>
-        </section>
-
-        <section className="newsletter" id="subscribe">
-          <Mail size={24} />
-          <div>
-            <span className="kicker">Notes, occasionally</span>
-            <h2>New technical notes, shared when they’re ready.</h2>
-          </div>
-          <span className="newsletter-button unavailable">Subscriptions coming soon</span>
-        </section>
-      </main>
+      </main>}
 
       <footer>
         <div className="wordmark">F<span>✦</span>N</div>

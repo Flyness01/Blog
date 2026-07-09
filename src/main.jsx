@@ -44,9 +44,10 @@ function App() {
           F<span>✦</span>N
         </button>
         <nav className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Main navigation">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#disclaimer">Disclaimer</a>
+          <button onClick={() => scrollTo("home")}>Home</button>
+          <button onClick={() => scrollTo("writing")}>Articles</button>
+          <button onClick={() => scrollTo("about")}>About</button>
+          <button onClick={() => scrollTo("disclaimer")}>Disclaimer</button>
         </nav>
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
           {menuOpen ? <X /> : <Menu />}
@@ -64,7 +65,7 @@ function App() {
             thinking about operating systems, parallel processing, distributed systems, and HCI.
           </p>
           <button className="primary-button" onClick={() => scrollTo("writing")}>
-            Read my latest notes <span>↓</span>
+            Read my latest article <span>↓</span>
           </button>
           <div className="doodle" aria-hidden="true">curious<br />about it all <span>↝</span></div>
         </section>
@@ -72,7 +73,7 @@ function App() {
         <section className="featured" id="writing">
           <div className="section-heading">
             <div>
-              <span className="kicker">01 / Writing</span>
+              <span className="kicker">01 / Articles</span>
               <h2>Ideas I keep<br /><em>coming back to</em></h2>
             </div>
             <p>Technical writing about systems, parallelism, and the humans who build them.</p>
@@ -148,7 +149,7 @@ function App() {
           <nav className="footer-nav" aria-label="Footer navigation">
             <span>Explore</span>
             <button onClick={() => scrollTo("home")}>Home</button>
-            <button onClick={() => scrollTo("writing")}>Writing</button>
+            <button onClick={() => scrollTo("writing")}>Articles</button>
             <button onClick={() => scrollTo("about")}>About</button>
           </nav>
           <nav className="footer-nav" aria-label="Featured writing">

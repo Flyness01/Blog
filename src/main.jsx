@@ -11,7 +11,13 @@ function App() {
   const [comment, setComment] = useState({ name: "", text: "" });
 
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    if (viewArticle) {
+      window.location.hash = id;
+      setViewArticle(false);
+      window.setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }), 0);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
     setMenuOpen(false);
   };
 
@@ -98,9 +104,12 @@ function App() {
         </section>
 
         <section className="about" id="about">
-          <div className="portrait" role="img" aria-label="Abstract warm-toned portrait placeholder">
-            <span>your<br />photo<br />here</span>
-          </div>
+          <figure className="portrait">
+            <img
+              src={`${import.meta.env.BASE_URL}images/flyness-namatama.jpg`}
+              alt="Flyness Namatama seated in a blue chair beside a window"
+            />
+          </figure>
           <div className="about-copy">
             <span className="kicker">02 / A little about me</span>
             <h2>Hello, I’m Flyness.</h2>
@@ -159,10 +168,36 @@ function App() {
 
       </main>}
 
-      <footer>
-        <div className="wordmark">F<span>✦</span>N</div>
-        <p>Learning carefully, one systems question at a time.</p>
-        <p id="disclaimer"><a href="#disclaimer">Disclaimer</a>: Posts reflect an evolving learning process. · © 2026 Flyness Namatama</p>
+      <footer className="site-footer" id="disclaimer">
+        <div className="footer-main">
+          <div className="footer-intro">
+            <button className="wordmark" onClick={() => scrollTo("home")} aria-label="Go to home">
+              F<span>✦</span>N
+            </button>
+            <p>Learning carefully, one systems question at a time.</p>
+          </div>
+          <nav className="footer-nav" aria-label="Footer navigation">
+            <span>Explore</span>
+            <button onClick={() => scrollTo("home")}>Home</button>
+            <button onClick={() => scrollTo("writing")}>Writing</button>
+            <button onClick={() => scrollTo("about")}>About</button>
+          </nav>
+          <nav className="footer-nav" aria-label="Featured writing">
+            <span>Featured</span>
+            <button onClick={openArticle}>The hidden human in system design</button>
+            <a
+              href="https://medium.com/@flynessnamatama/the-hidden-human-in-system-design-why-is-it-still-so-hard-to-write-safe-parallel-code-bd5985225faf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Medium <ArrowUpRight size={13} />
+            </a>
+          </nav>
+        </div>
+        <div className="footer-bottom">
+          <p>Posts reflect an evolving learning process.</p>
+          <p>© 2026 Flyness Namatama</p>
+        </div>
       </footer>
     </div>
   );

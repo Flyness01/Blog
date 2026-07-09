@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { Analytics } from "@vercel/analytics/react";
 import { ArrowUpRight, Menu, X, Sparkles } from "lucide-react";
 import ArticlePage from "./ArticlePage";
 import CommentsSection from "./CommentsSection";
@@ -169,6 +170,7 @@ function App() {
           <p>© 2026 Flyness Namatama</p>
         </div>
       </footer>
+      <Analytics />
     </div>
   );
 }

@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { ArrowUpRight, Menu, X, Sparkles } from "lucide-react";
 import ArticlePage from "./ArticlePage";
+import CommentsSection from "./CommentsSection";
 import "./styles.css";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [viewArticle, setViewArticle] = useState(window.location.hash === "#/writing/hidden-human");
-  const [comments, setComments] = useState([]);
-  const [comment, setComment] = useState({ name: "", text: "" });
 
   const scrollTo = (id) => {
     if (viewArticle) {
@@ -130,41 +129,11 @@ function App() {
           </div>
         </section>
 
-        <section className="comments" id="comments">
-          <div className="comments-intro">
-            <span className="kicker">03 / Join the conversation</span>
-            <h2>Leave a thought<br /><em>in the margins.</em></h2>
-            <p>Questions, reflections, respectful disagreements—all are welcome here.</p>
-          </div>
-          <div>
-            <div className="comment-list">
-              {comments.length === 0 && (
-                <p className="no-comments">No comments yet. You can start the conversation.</p>
-              )}
-              {comments.map((item, index) => (
-                <article className="comment" key={`${item.name}-${index}`}>
-                  <div className="comment-avatar">{item.name.slice(0, 1).toUpperCase()}</div>
-                  <div><strong>{item.name}</strong><p>{item.text}</p></div>
-                </article>
-              ))}
-            </div>
-            <form className="comment-form" onSubmit={(e) => {
-              e.preventDefault();
-              setComments([...comments, comment]);
-              setComment({ name: "", text: "" });
-            }}>
-              <label>
-                Your name
-                <input required value={comment.name} onChange={(e) => setComment({ ...comment, name: e.target.value })} placeholder="How should I call you?" />
-              </label>
-              <label>
-                Your comment
-                <textarea required value={comment.text} onChange={(e) => setComment({ ...comment, text: e.target.value })} placeholder="Add to the conversation…" rows="4" />
-              </label>
-              <button type="submit">Leave comment <ArrowUpRight size={16} /></button>
-            </form>
-          </div>
-        </section>
+        <CommentsSection
+          postSlug="general"
+          kicker="03 / General thoughts"
+          description="Questions, reflections, suggestions, and thoughts about this space are welcome here."
+        />
 
       </main>}
 

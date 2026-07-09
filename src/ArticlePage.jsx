@@ -1,4 +1,5 @@
 import { ArrowLeft, ExternalLink } from "lucide-react";
+import CommentsSection from "./CommentsSection";
 
 export default function ArticlePage({ onBack }) {
   return (
@@ -182,6 +183,7 @@ static int brcmstb_pm_probe(...) {
           </a>
         </div>
       </article>
+      <CommentsSection postSlug="hidden-human" />
     </main>
   );
 }

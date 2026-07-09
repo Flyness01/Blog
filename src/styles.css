@@ -153,12 +153,18 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
 .comment { display: flex; gap: 16px; border-bottom: 1px solid #d0c2c3; padding: 0 0 20px; }
 .comment-avatar { flex: 0 0 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: #d8b7bf; font-family: "DM Serif Display", serif; color: var(--plum); }
 .comment strong { font-size: 13px; }
+.comment time { display: block; margin-top: 3px; color: #8b7e86; font-size: 9px; text-transform: uppercase; letter-spacing: 1px; }
 .comment p { margin: 6px 0 0; color: #675a63; line-height: 1.6; font-size: 14px; }
 .comment-form { display: grid; gap: 20px; }
 .comment-form label { display: grid; gap: 8px; text-transform: uppercase; font-size: 9px; letter-spacing: 1.5px; font-weight: 600; }
 .comment-form input, .comment-form textarea { width: 100%; border: 1px solid #cbbdbd; background: rgba(255,255,255,.45); padding: 13px; outline: none; resize: vertical; text-transform: none; letter-spacing: 0; }
 .comment-form input:focus, .comment-form textarea:focus { border-color: var(--plum); }
 .comment-form button, .newsletter-button { width: fit-content; border: 0; background: var(--ink); color: white; padding: 14px 18px; display: flex; align-items: center; gap: 16px; text-decoration: none; cursor: pointer; }
+.comment-form button:disabled { cursor: wait; opacity: .65; }
+.comment-honeypot { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.comment-status { margin: -4px 0 0; font-size: 13px; line-height: 1.5; }
+.comment-status.success { color: #47633f; }
+.comment-status.error { color: #8a334c; }
 .site-footer { background: #302830; color: #f8f4ef; padding: 75px max(32px, calc((100vw - 1116px) / 2)) 28px; }
 .site-footer .wordmark { color: #f8f4ef; font-size: 30px; }
 .footer-main { display: grid; grid-template-columns: 1.4fr .65fr 1fr; gap: 70px; padding-bottom: 60px; }

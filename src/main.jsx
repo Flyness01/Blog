@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { ArrowUpRight, Menu, X, Sparkles } from "lucide-react";
+import { Analytics } from "@vercel/analytics/react";
 import ArticlePage from "./ArticlePage";
 import CommentsSection from "./CommentsSection";
 import "./styles.css";
@@ -38,21 +39,23 @@ function App() {
   };
 
   return (
-    <div className="site-shell">
-      <header className="nav">
-        <button className="wordmark" onClick={() => scrollTo("home")} aria-label="Go home">
-          F<span>✦</span>N
-        </button>
-        <nav className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Main navigation">
-          <button onClick={() => scrollTo("home")}>Home</button>
-          <button onClick={() => scrollTo("writing")}>Articles</button>
-          <button onClick={() => scrollTo("about")}>About</button>
-          <button onClick={() => scrollTo("disclaimer")}>Disclaimer</button>
-        </nav>
-        <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
-          {menuOpen ? <X /> : <Menu />}
-        </button>
-      </header>
+    <>
+      <Analytics />
+      <div className="site-shell">
+        <header className="nav">
+          <button className="wordmark" onClick={() => scrollTo("home")} aria-label="Go home">
+            F<span>✦</span>N
+          </button>
+          <nav className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Main navigation">
+            <button onClick={() => scrollTo("home")}>Home</button>
+            <button onClick={() => scrollTo("writing")}>Articles</button>
+            <button onClick={() => scrollTo("about")}>About</button>
+            <button onClick={() => scrollTo("disclaimer")}>Disclaimer</button>
+          </nav>
+          <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+            {menuOpen ? <X /> : <Menu />}
+          </button>
+        </header>
 
       {viewArticle ? (
         <ArticlePage onBack={closeArticle} />
@@ -170,6 +173,7 @@ function App() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
 

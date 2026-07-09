@@ -5,39 +5,37 @@ import "./styles.css";
 
 const posts = [
   {
-    date: "May 18, 2026",
-    read: "6 min read",
-    category: "Research Notes",
-    title: "What community gardens teach us about belonging",
+    date: "Topic in progress",
+    read: "Reading notes",
+    category: "Operating Systems",
+    title: "Why is it still so hard to write safe parallel code?",
     excerpt:
-      "A field note on shared space, informal care networks, and why the smallest acts of stewardship can become a kind of civic language.",
+      "Exploring race conditions, memory safety, and the gap between system behavior and a developer’s mental model.",
     color: "sage",
   },
   {
-    date: "April 02, 2026",
-    read: "4 min read",
-    category: "Field Notes",
-    title: "Listening is a research method, too",
+    date: "Topic in progress",
+    read: "Reading notes",
+    category: "Parallel Processing",
+    title: "What makes parallel programs difficult to debug?",
     excerpt:
-      "Reflections from twelve interviews, three cups of terrible coffee, and one reminder that good questions need room to breathe.",
+      "A closer look at nondeterminism, concurrency bugs, and the tools developers use to understand what went wrong.",
     color: "rose",
   },
   {
-    date: "March 11, 2026",
-    read: "5 min read",
-    category: "Things I’m Learning",
-    title: "In defense of changing your mind",
+    date: "Topic in progress",
+    read: "Reading notes",
+    category: "Systems + HCI",
+    title: "Can systems interfaces be designed for clearer mental models?",
     excerpt:
-      "On intellectual humility, annotated margins, and treating uncertainty as an invitation rather than a flaw.",
+      "Notes on developer experience, system abstractions, and how interface design may affect correctness.",
     color: "lilac",
   },
 ];
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [comments, setComments] = useState([
-    { name: "A fellow curious mind", text: "I loved the reminder that listening is part of the work, not just something around it." }
-  ]);
+  const [comments, setComments] = useState([]);
   const [comment, setComment] = useState({ name: "", text: "" });
 
   const scrollTo = (id) => {
@@ -49,7 +47,7 @@ function App() {
     <div className="site-shell">
       <header className="nav">
         <button className="wordmark" onClick={() => scrollTo("home")} aria-label="Go home">
-          M<span>✦</span>B
+          F<span>✦</span>N
         </button>
         <nav className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Main navigation">
           <a href="#home">Home</a>
@@ -69,8 +67,8 @@ function App() {
           <div className="eyebrow"><span /> Notes from a curious mind</div>
           <h1>I’m learning in public.<br /><em>Come sit with me.</em></h1>
           <p className="hero-copy">
-            I’m Maya—a researcher, essayist, and future graduate student thinking about
-            communities, culture, and the quiet systems that shape how we live.
+            I’m Flyness Namatama. I use this space to learn in public and develop my
+            thinking about operating systems, parallel processing, distributed systems, and HCI.
           </p>
           <button className="primary-button" onClick={() => scrollTo("writing")}>
             Read my latest notes <span>↓</span>
@@ -81,7 +79,7 @@ function App() {
         <section className="featured" id="writing">
           <div className="section-heading">
             <div>
-              <span className="kicker">01 / Selected writing</span>
+              <span className="kicker">01 / Planned notes</span>
               <h2>Ideas I keep<br /><em>coming back to</em></h2>
             </div>
             <p>A small archive of questions, observations, and works in progress.</p>
@@ -90,21 +88,21 @@ function App() {
           <article className="lead-post">
             <div className="lead-art">
               <div className="paper-note">
-                <span>FIELD NOTE № 12</span>
-                <p>“Pay attention to what people make room for.”</p>
-                <small>— scribbled in the margin</small>
+                <span>QUESTION № 01</span>
+                <p>Why is safe parallel code still so difficult to write?</p>
+                <small>— a question I’m exploring</small>
               </div>
               <div className="flower" aria-hidden="true">✿</div>
             </div>
             <div className="lead-content">
-              <div className="post-meta"><span>Essay</span> June 04, 2026 · 8 min read</div>
-              <h3>The spaces between the data</h3>
+              <div className="post-meta"><span>Starting point</span> Topic in progress</div>
+              <h3>The hidden human in system design</h3>
               <p>
-                Numbers can tell us what happened. But sometimes the most meaningful part of
-                research lives in a pause, a side comment, or the story someone tells after
-                the recorder is switched off.
+                My first set of notes asks how the design of operating-system abstractions
+                and developer tools shapes our ability to reason about parallel code safely.
+                Claims and examples will be supported by linked sources as each post is published.
               </p>
-              <a href="#post">Read the essay <ArrowUpRight size={17} /></a>
+              <a href="#comments">Discuss this question <ArrowUpRight size={17} /></a>
             </div>
           </article>
 
@@ -116,7 +114,7 @@ function App() {
                 <h3>{post.title}</h3>
                 <p>{post.excerpt}</p>
                 <a href={`#post-${i + 2}`} aria-label={`Read ${post.title}`}>
-                  Keep reading <ArrowUpRight size={16} />
+                  Discuss this topic <ArrowUpRight size={16} />
                 </a>
               </article>
             ))}
@@ -129,20 +127,20 @@ function App() {
           </div>
           <div className="about-copy">
             <span className="kicker">02 / A little about me</span>
-            <h2>Hello, I’m Maya.</h2>
+            <h2>Hello, I’m Flyness.</h2>
             <p className="large">
-              I care about the stories hidden inside systems—and the people we overlook
-              when we only look at outcomes.
+              I’m interested in how complex computer systems work—and how we can make
+              them easier for people to understand, build, and debug.
             </p>
             <p>
-              My work sits at the intersection of social research, public policy, and
-              community life. When I’m not reading or writing, I’m probably rearranging
-              my bookshelves, walking without a destination, or making an unnecessarily
-              elaborate cup of tea.
+              This blog is a learning space for technical notes on parallel processing
+              and operating systems, with occasional connections to distributed systems
+              and human-computer interaction. I’ll use it to work through one question
+              at a time and explain what I learn clearly.
             </p>
             <div className="tiny-list">
-              <span><Sparkles size={15} /> Currently researching: collective care</span>
-              <span><Sparkles size={15} /> Currently reading: <em>Emergent Strategy</em></span>
+              <span><Sparkles size={15} /> Core interests: parallel processing and operating systems</span>
+              <span><Sparkles size={15} /> Also exploring: distributed systems and HCI</span>
             </div>
           </div>
         </section>
@@ -155,6 +153,9 @@ function App() {
           </div>
           <div>
             <div className="comment-list">
+              {comments.length === 0 && (
+                <p className="no-comments">No comments yet. You can start the conversation.</p>
+              )}
               {comments.map((item, index) => (
                 <article className="comment" key={`${item.name}-${index}`}>
                   <div className="comment-avatar">{item.name.slice(0, 1).toUpperCase()}</div>
@@ -189,18 +190,16 @@ function App() {
           <Mail size={24} />
           <div>
             <span className="kicker">Notes, occasionally</span>
-            <h2>A thoughtful email, when I have something worth sharing.</h2>
+            <h2>New technical notes, shared when they’re ready.</h2>
           </div>
-          <a className="newsletter-button" href="mailto:hello@example.com?subject=Subscribe%20me">
-            Subscribe <ArrowUpRight size={16} />
-          </a>
+          <span className="newsletter-button unavailable">Subscriptions coming soon</span>
         </section>
       </main>
 
       <footer>
-        <div className="wordmark">M<span>✦</span>B</div>
-        <p>Made with care, curiosity, and probably too much tea.</p>
-        <p id="disclaimer"><a href="#disclaimer">Disclaimer</a>: Views are my own. · © 2026 Maya Bennett</p>
+        <div className="wordmark">F<span>✦</span>N</div>
+        <p>Learning carefully, one systems question at a time.</p>
+        <p id="disclaimer"><a href="#disclaimer">Disclaimer</a>: Posts reflect an evolving learning process. · © 2026 Flyness Namatama</p>
       </footer>
     </div>
   );

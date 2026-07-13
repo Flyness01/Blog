@@ -1,4 +1,26 @@
 {
+  "rewrites": [
+    {
+      "source": "/subscribe",
+      "destination": "/"
+    },
+    {
+      "source": "/writing/:path*",
+      "destination": "/"
+    },
+    {
+      "source": "/articles",
+      "destination": "/"
+    },
+    {
+      "source": "/about",
+      "destination": "/"
+    },
+    {
+      "source": "/disclaimer",
+      "destination": "/"
+    }
+  ],
   "crons": [
     {
       "path": "/api/send-post-alerts",

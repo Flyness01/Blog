@@ -9,7 +9,7 @@
     <lastBuildDate>Thu, 09 Jul 2026 12:00:00 GMT</lastBuildDate>
     <item>
       <title>The Hidden Human in System Design: Why is it still so hard to write safe parallel code?</title>
-      <link>https://flynessnamatama.com/#/writing/hidden-human</link>
+      <link>https://flynessnamatama.com/writing/hidden-human</link>
       <guid isPermaLink="true">https://flynessnamatama.com/#/writing/hidden-human</guid>
       <pubDate>Thu, 09 Jul 2026 12:00:00 GMT</pubDate>
       <description>How developer expectations, API behavior, and hidden reference-counting operations collide inside the Linux kernel.</description>

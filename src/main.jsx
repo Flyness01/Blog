@@ -8,9 +8,23 @@ import SubscribePage from "./SubscribePage";
 import "./styles.css";
 
 const getRoute = () => {
-  if (window.location.hash === "#/writing/hidden-human") return "article";
-  if (window.location.hash === "#/subscribe") return "subscribe";
+  if (window.location.pathname === "/writing/hidden-human" || window.location.hash === "#/writing/hidden-human") return "article";
+  if (window.location.pathname === "/subscribe" || window.location.hash === "#/subscribe") return "subscribe";
   return "home";
+};
+
+const sectionPaths = {
+  home: "/",
+  writing: "/articles",
+  about: "/about",
+  disclaimer: "/disclaimer",
+};
+
+const getSectionFromPath = () => {
+  if (window.location.pathname === "/articles") return "writing";
+  if (window.location.pathname === "/about") return "about";
+  if (window.location.pathname === "/disclaimer") return "disclaimer";
+  return "";
 };
 
 function App() {
@@ -18,14 +32,14 @@ function App() {
   const [route, setRoute] = useState(getRoute);
 
   const scrollTo = (id) => {
-    if (id === "disclaimer") {
+    if (id === "disclaimer" && route !== "home") {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
       setMenuOpen(false);
       return;
     }
 
+    window.history.pushState({}, "", sectionPaths[id] || "/");
     if (route !== "home") {
-      window.location.hash = id;
       setRoute("home");
       window.setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }), 0);
     } else {
@@ -35,32 +49,59 @@ function App() {
   };
 
   useEffect(() => {
-    const syncRoute = () => setRoute(getRoute());
+    const syncRoute = () => {
+      const nextRoute = getRoute();
+      setRoute(nextRoute);
+      if (nextRoute === "home") {
+        const section = getSectionFromPath();
+        window.setTimeout(() => {
+          if (section) {
+            document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
+          } else {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        }, 0);
+      }
+    };
     window.addEventListener("hashchange", syncRoute);
-    return () => window.removeEventListener("hashchange", syncRoute);
+    window.addEventListener("popstate", syncRoute);
+    return () => {
+      window.removeEventListener("hashchange", syncRoute);
+      window.removeEventListener("popstate", syncRoute);
+    };
   }, []);
 
+  useEffect(() => {
+    if (route !== "home") return;
+
+    const section = getSectionFromPath();
+    if (section) {
+      window.setTimeout(() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" }), 0);
+    }
+  }, [route]);
+
   const openArticle = () => {
-    window.location.hash = "/writing/hidden-human";
+    window.history.pushState({}, "", "/writing/hidden-human");
     setRoute("article");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const closeArticle = () => {
-    window.location.hash = "writing";
+    window.history.pushState({}, "", "/articles");
     setRoute("home");
     window.scrollTo({ top: 0, behavior: "smooth" });
+    window.setTimeout(() => document.getElementById("writing")?.scrollIntoView({ behavior: "smooth" }), 0);
   };
 
   const openSubscribe = () => {
-    window.location.hash = "/subscribe";
+    window.history.pushState({}, "", "/subscribe");
     setRoute("subscribe");
     setMenuOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const closeSubscribe = () => {
-    window.location.hash = "";
+    window.history.pushState({}, "", "/");
     setRoute("home");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };

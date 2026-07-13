@@ -60,7 +60,7 @@ const emailShell = ({ eyebrow, title, preview, body }) => `<!doctype html>
 
 const buildWelcomeTest = ({ name }) => {
   const safeName = escapeHtml(name || "there");
-  const latestArticleUrl = `${siteUrl}/#/writing/hidden-human`;
+  const latestArticleUrl = `${siteUrl}/writing/hidden-human`;
   const latestArticleTitle = "The Hidden Human in System Design";
 
   return {
@@ -96,7 +96,7 @@ const buildPostTest = ({ name }) => {
   const safeName = escapeHtml(name || "there");
   const postTitle = "Test dispatch from the margins";
   const postDescription = "A pretend new-post alert, sent only to you, so we can inspect the design without disturbing the subscriber list.";
-  const postLink = `${siteUrl}/#/writing/hidden-human`;
+  const postLink = `${siteUrl}/writing/hidden-human`;
 
   return {
     subject: `[Test] New note from Flyness: ${postTitle}`,

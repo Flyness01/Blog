@@ -37,7 +37,7 @@ const buildWelcomeEmail = (subscriber) => {
   const name = subscriber.name?.trim() || "there";
   const safeName = escapeHtml(name);
   const unsubscribeUrl = `${siteUrl}/api/unsubscribe?token=${subscriber.unsubscribe_token}`;
-  const latestArticleUrl = `${siteUrl}/#/writing/hidden-human`;
+  const latestArticleUrl = `${siteUrl}/writing/hidden-human`;
   const latestArticleTitle = "The Hidden Human in System Design";
 
   return {

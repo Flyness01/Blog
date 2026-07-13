@@ -58,10 +58,22 @@ export default function SubscribePage({ onBack }) {
       return;
     }
 
+    const welcomeResponse = await fetch("/api/send-welcome-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: subscriber.email.trim().toLowerCase(),
+      }),
+    });
+
     setSubscriber({ name: "", email: "" });
     setStatus({
       type: "success",
-      message: "You’re on the list. Welcome to the tiny research salon.",
+      message: welcomeResponse.ok
+        ? "You’re on the list. A welcome note is on its way."
+        : "You’re on the list. The welcome note may take a moment.",
     });
   };
 

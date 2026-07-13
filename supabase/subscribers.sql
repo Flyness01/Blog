@@ -15,6 +15,7 @@ create table if not exists public.subscribers (
     check (source in ('website')),
   unsubscribe_token uuid not null default gen_random_uuid(),
   unsubscribed_at timestamptz,
+  welcome_sent_at timestamptz,
   subscribed_at timestamptz not null default now()
 );
 
@@ -23,6 +24,9 @@ alter table public.subscribers
 
 alter table public.subscribers
   add column if not exists unsubscribed_at timestamptz;
+
+alter table public.subscribers
+  add column if not exists welcome_sent_at timestamptz;
 
 alter table public.subscribers
   add column if not exists subscribed_at timestamptz not null default now();

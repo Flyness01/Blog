@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Analytics } from "@vercel/analytics/react";
-import { ArrowUpRight, Menu, X, Sparkles } from "lucide-react";
+import { ArrowUpRight, Mail, Menu, Rss, X, Sparkles } from "lucide-react";
 import ArticlePage from "./ArticlePage";
 import CommentsSection from "./CommentsSection";
 import "./styles.css";
@@ -9,6 +9,7 @@ import "./styles.css";
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [viewArticle, setViewArticle] = useState(window.location.hash === "#/writing/hidden-human");
+  const newsletterSubscribeUrl = "";
 
   const scrollTo = (id) => {
     if (viewArticle) {
@@ -47,6 +48,7 @@ function App() {
         <nav className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Main navigation">
           <button onClick={() => scrollTo("home")}>Home</button>
           <button onClick={() => scrollTo("writing")}>Articles</button>
+          <button onClick={() => scrollTo("subscribe")}>Subscribe</button>
           <button onClick={() => scrollTo("about")}>About</button>
           <button onClick={() => scrollTo("disclaimer")}>Disclaimer</button>
         </nav>
@@ -104,6 +106,42 @@ function App() {
 
         </section>
 
+        <section className="newsletter" id="subscribe">
+          <div className="newsletter-card">
+            <div className="newsletter-copy">
+              <span className="kicker">02 / Subscribe</span>
+              <h2>New notes,<br /><em>sent softly.</em></h2>
+              <p>
+                A small inbox note when I publish something new: systems, safety,
+                memory, parallelism, and the human side of computing.
+              </p>
+            </div>
+            <div className="newsletter-panel">
+              <div className="newsletter-stamp" aria-hidden="true">✦</div>
+              <h3>Notes from Flyness</h3>
+              <p>
+                Quirky, careful, research-minded writing — with a little blush in
+                the margins.
+              </p>
+              {newsletterSubscribeUrl ? (
+                <a className="newsletter-button" href={newsletterSubscribeUrl} target="_blank" rel="noreferrer">
+                  Subscribe for new notes <Mail size={16} />
+                </a>
+              ) : (
+                <div className="newsletter-actions" aria-label="Subscription options">
+                  <span className="newsletter-waitlist">
+                    Email subscription is being connected next.
+                  </span>
+                  <a className="newsletter-button secondary" href={`${import.meta.env.BASE_URL}feed.xml`}>
+                    Follow the RSS feed <Rss size={16} />
+                  </a>
+                </div>
+              )}
+              <small>No spam. Just new essays when they exist.</small>
+            </div>
+          </div>
+        </section>
+
         <section className="about" id="about">
           <figure className="portrait">
             <img
@@ -112,7 +150,7 @@ function App() {
             />
           </figure>
           <div className="about-copy">
-            <span className="kicker">02 / A little about me</span>
+            <span className="kicker">03 / A little about me</span>
             <h2>Hello, I’m Flyness.</h2>
             <p className="large">
               I’m interested in how complex computer systems work—and how we can make
@@ -133,7 +171,7 @@ function App() {
 
         <CommentsSection
           postSlug="general"
-          kicker="03 / General thoughts"
+          kicker="04 / General thoughts"
           description="Questions, reflections, suggestions, and thoughts about this space are welcome here."
         />
 
@@ -151,6 +189,7 @@ function App() {
             <span>Explore</span>
             <button onClick={() => scrollTo("home")}>Home</button>
             <button onClick={() => scrollTo("writing")}>Articles</button>
+            <button onClick={() => scrollTo("subscribe")}>Subscribe</button>
             <button onClick={() => scrollTo("about")}>About</button>
           </nav>
           <nav className="footer-nav" aria-label="Featured writing">

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Flyness Namatama — Systems Notes</title>
+    <link>https://flynessnamatama.com/</link>
+    <atom:link href="https://flynessnamatama.com/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Technical notes on operating systems, parallel processing, distributed systems, and human-computer interaction.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 09 Jul 2026 12:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Hidden Human in System Design: Why is it still so hard to write safe parallel code?</title>
+      <link>https://flynessnamatama.com/#/writing/hidden-human</link>
+      <guid isPermaLink="true">https://flynessnamatama.com/#/writing/hidden-human</guid>
+      <pubDate>Thu, 09 Jul 2026 12:00:00 GMT</pubDate>
+      <description>How developer expectations, API behavior, and hidden reference-counting operations collide inside the Linux kernel.</description>
+    </item>
+  </channel>
+</rss>

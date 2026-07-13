@@ -12,6 +12,22 @@ export default function SubscribePage({ onBack }) {
     event.preventDefault();
     setStatus({ type: "", message: "" });
 
+    if (!subscriber.name.trim()) {
+      setStatus({
+        type: "error",
+        message: "Tell me what to call you first.",
+      });
+      return;
+    }
+
+    if (!subscriber.email.trim()) {
+      setStatus({
+        type: "error",
+        message: "Add your email so the notes know where to land.",
+      });
+      return;
+    }
+
     if (website) {
       setSubscriber({ name: "", email: "" });
       return;
@@ -76,8 +92,6 @@ export default function SubscribePage({ onBack }) {
               <label>
                 Name
                 <input
-                  required
-                  minLength="1"
                   maxLength="80"
                   value={subscriber.name}
                   onChange={(event) => setSubscriber({ ...subscriber, name: event.target.value })}
@@ -87,7 +101,6 @@ export default function SubscribePage({ onBack }) {
               <label>
                 Email
                 <input
-                  required
                   type="email"
                   maxLength="254"
                   value={subscriber.email}

@@ -1,7 +1,53 @@
+import { useState } from "react";
 import { ArrowLeft, Mail } from "lucide-react";
+import { supabase } from "./supabase";
 
 export default function SubscribePage({ onBack }) {
-  const newsletterSubscribeUrl = "";
+  const [subscriber, setSubscriber] = useState({ name: "", email: "" });
+  const [website, setWebsite] = useState("");
+  const [status, setStatus] = useState({ type: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+
+  const subscribe = async (event) => {
+    event.preventDefault();
+    setStatus({ type: "", message: "" });
+
+    if (website) {
+      setSubscriber({ name: "", email: "" });
+      return;
+    }
+
+    setSubmitting(true);
+    const { error } = await supabase.from("subscribers").insert({
+      name: subscriber.name.trim() || null,
+      email: subscriber.email.trim().toLowerCase(),
+      source: "website",
+    });
+    setSubmitting(false);
+
+    if (error?.code === "23505") {
+      setStatus({
+        type: "success",
+        message: "You’re already on the list. Very prepared of you.",
+      });
+      setSubscriber({ name: "", email: "" });
+      return;
+    }
+
+    if (error) {
+      setStatus({
+        type: "error",
+        message: "I couldn’t save that just now. Please try again in a moment.",
+      });
+      return;
+    }
+
+    setSubscriber({ name: "", email: "" });
+    setStatus({
+      type: "success",
+      message: "You’re on the list. Welcome to the tiny research salon.",
+    });
+  };
 
   return (
     <main className="subscribe-page">
@@ -26,17 +72,40 @@ export default function SubscribePage({ onBack }) {
               human expectation — fewer hot takes, more annotated curiosity, with
               a little blush in the margins.
             </p>
-            {newsletterSubscribeUrl ? (
-              <a className="newsletter-button" href={newsletterSubscribeUrl} target="_blank" rel="noreferrer">
-                Subscribe for new notes <Mail size={16} />
-              </a>
-            ) : (
-              <div className="newsletter-actions" aria-label="Subscription options">
-                <span className="newsletter-waitlist">
-                  The tiny research salon is almost open.
-                </span>
-              </div>
-            )}
+            <form className="newsletter-form" onSubmit={subscribe}>
+              <label>
+                Name <span>optional</span>
+                <input
+                  maxLength="80"
+                  value={subscriber.name}
+                  onChange={(event) => setSubscriber({ ...subscriber, name: event.target.value })}
+                  placeholder="What should I call you?"
+                />
+              </label>
+              <label>
+                Email
+                <input
+                  required
+                  type="email"
+                  maxLength="254"
+                  value={subscriber.email}
+                  onChange={(event) => setSubscriber({ ...subscriber, email: event.target.value })}
+                  placeholder="you@example.com"
+                />
+              </label>
+              <label className="comment-honeypot" aria-hidden="true">
+                Website
+                <input tabIndex="-1" autoComplete="off" value={website} onChange={(event) => setWebsite(event.target.value)} />
+              </label>
+              {status.message && (
+                <p className={`comment-status ${status.type}`} role="status">
+                  {status.message}
+                </p>
+              )}
+              <button className="newsletter-button" type="submit" disabled={submitting}>
+                {submitting ? "Subscribing…" : "Subscribe for new notes"} <Mail size={16} />
+              </button>
+            </form>
             <small>No spam. No content confetti. Just new essays when they exist.</small>
           </div>
         </div>

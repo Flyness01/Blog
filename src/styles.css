@@ -236,6 +236,38 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
   font-size: 13px;
   line-height: 1.5;
 }
+.newsletter-form {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 16px;
+}
+.newsletter-form label {
+  display: grid;
+  gap: 8px;
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  color: var(--plum);
+}
+.newsletter-form label span {
+  color: #93848d;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.newsletter-form input {
+  width: 100%;
+  border: 1px solid #cbbdbd;
+  background: rgba(255,255,255,.45);
+  padding: 13px;
+  outline: none;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.newsletter-form input:focus { border-color: var(--plum); }
+.newsletter-form .comment-status { margin: 0; }
 .newsletter-button.secondary {
   background: var(--ink);
   color: #f8f4ef;
@@ -280,6 +312,7 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
 .comment-form input, .comment-form textarea { width: 100%; border: 1px solid #cbbdbd; background: rgba(255,255,255,.45); padding: 13px; outline: none; resize: vertical; text-transform: none; letter-spacing: 0; }
 .comment-form input:focus, .comment-form textarea:focus { border-color: var(--plum); }
 .comment-form button, .newsletter-button { width: fit-content; border: 0; background: var(--ink); color: white; padding: 14px 18px; display: flex; align-items: center; gap: 16px; text-decoration: none; cursor: pointer; }
+.newsletter-button:disabled { cursor: wait; opacity: .65; }
 .comment-form button:disabled { cursor: wait; opacity: .65; }
 .comment-honeypot { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .comment-status { margin: -4px 0 0; font-size: 13px; line-height: 1.5; }

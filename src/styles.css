@@ -296,6 +296,14 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
   color: #897c84;
   font-size: 11px;
 }
+.newsletter-imprint {
+  margin-top: 18px;
+  font-family: "DM Serif Display", serif;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: #b9647d;
+}
+.newsletter-imprint span { color: var(--plum); font-size: 9px; padding: 0 2px; vertical-align: 2px; }
 
 .about { max-width: 1050px; margin: auto; padding: 125px 32px; display: grid; grid-template-columns: .75fr 1.2fr; gap: 100px; align-items: center; }
 .portrait { height: 500px; margin: 0; position: relative; overflow: hidden; background: #d7c8c3; }

@@ -43,7 +43,7 @@ export default async function handler(request, response) {
           <h1 style="font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:42px;line-height:1.05;margin:14px 0 0;letter-spacing:-.4px;">You’re unsubscribed.</h1>
         </div>
         <div style="padding:32px 30px;">
-          <p style="font-size:17px;line-height:1.75;color:#5c505b;margin:0 0 18px;">No hard feelings — the inbox has spoken, and I respect its boundaries.</p>
+          <p style="font-size:17px;line-height:1.75;color:#5c505b;margin:0 0 18px;">No hard feelings. The inbox has spoken, and I respect its boundaries.</p>
           <p style="font-size:17px;line-height:1.75;color:#5c505b;margin:0 0 26px;">You won’t receive new post alerts anymore. The tiny research salon will keep the lights on if you ever want to wander back in.</p>
           <p style="margin:28px 0;">
             <a href="https://flynessnamatama.com/" style="display:inline-block;background:#2d2430;color:#fff;text-decoration:none;padding:14px 18px;font-weight:700;">Return to the site</a>

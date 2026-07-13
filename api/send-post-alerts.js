@@ -96,7 +96,7 @@ Unsubscribe: ${unsubscribeUrl}`,
         </div>
         <div style="padding:32px 30px;">
           <p style="font-size:17px;line-height:1.75;color:#5c505b;margin:0 0 18px;">Hi ${safeName},</p>
-          <p style="font-size:17px;line-height:1.75;color:#5c505b;margin:0 0 18px;">A new note just left the lab bench. It has systems, safety, and a small amount of intellectual mischief — academically supervised, of course.</p>
+          <p style="font-size:17px;line-height:1.75;color:#5c505b;margin:0 0 18px;">A new note just left the lab bench. It has systems, safety, and a small amount of intellectual mischief, academically supervised, of course.</p>
           <div style="background:#eee2d7;border-left:4px solid #6d3655;padding:22px;margin:28px 0;">
             <p style="margin:0 0 8px;text-transform:uppercase;letter-spacing:1.9px;color:#6d3655;font-size:10px;font-weight:700;">Today’s question</p>
             <p style="font-size:16px;line-height:1.68;color:#675b64;margin:0;">${safeDescription}</p>
@@ -105,11 +105,11 @@ Unsubscribe: ${unsubscribeUrl}`,
             <a href="${post.link}" style="display:inline-block;background:#2d2430;color:#fff;text-decoration:none;padding:14px 18px;font-weight:700;letter-spacing:.2px;">Read the note</a>
           </p>
           <p style="font-size:15px;line-height:1.7;color:#5c505b;margin:24px 0 0;">Warmly,<br /><strong>Flyness</strong></p>
-          <p style="font-size:12px;line-height:1.6;color:#897c84;margin-top:30px;border-top:1px solid #e2d6d2;padding-top:18px;">
+          <p style="margin:30px 0 0;border-top:1px solid #e2d6d2;padding-top:18px;font-family:Georgia,'Times New Roman',serif;font-size:15px;letter-spacing:1.6px;color:#6d3655;">F ✦ N</p>
+          <p style="font-size:12px;line-height:1.6;color:#897c84;margin-top:12px;">
             No spam. No content confetti. Just new essays when they exist.<br />
             <a href="${unsubscribeUrl}" style="color:#6d3655;">Unsubscribe</a>
           </p>
-          <p style="margin:20px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:13px;letter-spacing:1.5px;color:#b9647d;">F<span style="color:#6d3655;">✦</span>N</p>
         </div>
       </div>
     </div>

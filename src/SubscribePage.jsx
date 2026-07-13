@@ -134,6 +134,9 @@ export default function SubscribePage({ onBack }) {
               </button>
             </form>
             <small>No spam. No content confetti. Just new essays when they exist.</small>
+            <div className="newsletter-imprint" aria-hidden="true">
+              F<span>✦</span>N
+            </div>
           </div>
         </div>
       </section>

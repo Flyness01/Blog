@@ -21,20 +21,18 @@ a { color: inherit; }
 .nav {
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   z-index: 20;
   height: 88px;
-  width: min(1180px, 100%);
-  padding: 0 32px;
-  margin: auto;
+  width: 100%;
+  padding: 0 max(32px, calc((100vw - 1116px) / 2));
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgba(45,36,48,.15);
-  background: rgba(248, 244, 239, .92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: #f8f4ef;
+  box-shadow: 0 10px 30px rgba(45, 36, 48, .06);
 }
 .wordmark {
   font-family: "DM Serif Display", serif;

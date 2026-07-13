@@ -65,7 +65,6 @@ Unsubscribe: ${unsubscribeUrl}`,
     <div style="max-width:680px;margin:0 auto;padding:34px 18px;">
       <div style="background:#f8f4ef;border:1px solid #e9ccd0;">
         <div style="background:#302830;color:#f8f4ef;padding:28px 30px;border-bottom:6px solid #d8b7bf;">
-          <p style="margin:0 0 18px;font-family:Georgia,'Times New Roman',serif;font-size:25px;letter-spacing:2px;color:#f8f4ef;">F<span style="color:#d8b7bf;">✦</span>N</p>
           <p style="margin:0;text-transform:uppercase;letter-spacing:2.7px;color:#d9a8b6;font-size:10px;font-weight:700;">Notes from Flyness</p>
           <h1 style="font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:44px;line-height:1.04;margin:14px 0 0;letter-spacing:-.6px;">Welcome to the tiny research salon.</h1>
         </div>
@@ -84,6 +83,7 @@ Unsubscribe: ${unsubscribeUrl}`,
             No spam. No content confetti. Just new essays when they exist.<br />
             <a href="${unsubscribeUrl}" style="color:#6d3655;">Unsubscribe</a>
           </p>
+          <p style="margin:20px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:13px;letter-spacing:1.5px;color:#b9647d;">F<span style="color:#6d3655;">✦</span>N</p>
         </div>
       </div>
     </div>

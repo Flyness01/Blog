@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 
 const siteUrl = process.env.SITE_URL || "https://flynessnamatama.com";
 const fromEmail = process.env.ALERT_FROM_EMAIL || "Flyness Namatama <notes@flynessnamatama.com>";
+const replyToEmail = process.env.REPLY_TO_EMAIL;
 
 const escapeHtml = (value = "") =>
   value
@@ -52,6 +53,7 @@ const sendEmail = async ({ to, subject, html, text }) => {
       subject,
       html,
       text,
+      ...(replyToEmail ? { reply_to: replyToEmail } : {}),
     }),
   });
 

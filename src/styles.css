@@ -17,7 +17,7 @@ button, input { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a { color: inherit; }
 
-.site-shell { overflow: hidden; }
+.site-shell { overflow-x: hidden; }
 .nav {
   position: sticky;
   top: 0;
@@ -152,7 +152,7 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
   flex-direction: column;
   justify-content: center;
 }
-.subscribe-back {
+.subscribe-back.back-link {
   width: fit-content;
   color: #f8f4ef;
   background: rgba(248, 244, 239, .1);
@@ -160,7 +160,7 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
   padding: 11px 14px;
   margin-bottom: 62px;
 }
-.subscribe-back:hover { color: #302830; background: #f8f4ef; }
+.subscribe-back.back-link:hover { color: #302830; background: #f8f4ef; }
 .newsletter-card {
   display: grid;
   grid-template-columns: .95fr 1fr;

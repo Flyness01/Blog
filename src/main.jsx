@@ -18,6 +18,12 @@ function App() {
   const [route, setRoute] = useState(getRoute);
 
   const scrollTo = (id) => {
+    if (id === "disclaimer") {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      setMenuOpen(false);
+      return;
+    }
+
     if (route !== "home") {
       window.location.hash = id;
       setRoute("home");

@@ -37,16 +37,21 @@ const buildWelcomeEmail = (subscriber) => {
   const name = subscriber.name?.trim() || "there";
   const safeName = escapeHtml(name);
   const unsubscribeUrl = `${siteUrl}/api/unsubscribe?token=${subscriber.unsubscribe_token}`;
+  const latestArticleUrl = `${siteUrl}/#/writing/hidden-human`;
+  const latestArticleTitle = "The Hidden Human in System Design";
 
   return {
-    subject: "You’re on the list — Notes from Flyness",
+    subject: "Welcome to Notes from Flyness ✦",
     text: `Hi ${name},
 
-You’re subscribed to Notes from Flyness.
+Welcome to Notes from Flyness.
+
+You are officially in the tiny research salon: systems notes, careful questions, and the occasional well-behaved sparkle.
 
 I’ll send a small inbox note when I publish something new — usually about systems, safety, memory, parallelism, and the human side of computing.
 
-No spam. No content confetti. Just new essays when they exist.
+Start here: ${latestArticleTitle}
+${latestArticleUrl}
 
 Warmly,
 Flyness
@@ -55,21 +60,31 @@ Visit the site: ${siteUrl}
 Unsubscribe: ${unsubscribeUrl}`,
     html: `<!doctype html>
 <html>
-  <body style="margin:0;background:#f8f4ef;color:#2d2430;font-family:Arial,sans-serif;">
-    <div style="max-width:640px;margin:0 auto;padding:40px 24px;">
-      <p style="text-transform:uppercase;letter-spacing:2px;color:#6d3655;font-size:11px;">Notes from Flyness</p>
-      <h1 style="font-family:Georgia,serif;font-weight:400;font-size:40px;line-height:1.1;margin:14px 0 18px;">You’re on the list.</h1>
-      <p style="font-size:16px;line-height:1.7;color:#5c505b;">Hi ${safeName},</p>
-      <p style="font-size:16px;line-height:1.7;color:#5c505b;">Welcome to the tiny research salon. I’ll send a small inbox note when I publish something new — usually about systems, safety, memory, parallelism, and the human side of computing.</p>
-      <p style="font-size:16px;line-height:1.7;color:#5c505b;">Expect careful little essays from the place where operating systems meet human expectation, with a little blush in the margins.</p>
-      <p style="margin:30px 0;">
-        <a href="${siteUrl}" style="display:inline-block;background:#2d2430;color:#fff;text-decoration:none;padding:14px 18px;">Visit the site</a>
-      </p>
-      <p style="font-size:15px;line-height:1.7;color:#5c505b;">Warmly,<br />Flyness</p>
-      <p style="font-size:12px;line-height:1.6;color:#897c84;margin-top:34px;">
-        No spam. No content confetti. Just new essays when they exist.<br />
-        <a href="${unsubscribeUrl}" style="color:#6d3655;">Unsubscribe</a>
-      </p>
+  <body style="margin:0;background:#302830;color:#2d2430;font-family:Arial,sans-serif;">
+    <div style="display:none;max-height:0;overflow:hidden;">You’re in — careful systems notes with a little blush in the margins.</div>
+    <div style="max-width:680px;margin:0 auto;padding:34px 18px;">
+      <div style="background:#f8f4ef;border:1px solid #e9ccd0;">
+        <div style="background:#302830;color:#f8f4ef;padding:28px 30px;border-bottom:6px solid #d8b7bf;">
+          <p style="margin:0;text-transform:uppercase;letter-spacing:2.4px;color:#d9a8b6;font-size:11px;font-weight:bold;">Notes from Flyness</p>
+          <h1 style="font-family:Georgia,serif;font-weight:400;font-size:42px;line-height:1.05;margin:14px 0 0;">Welcome to the tiny research salon.</h1>
+        </div>
+        <div style="padding:32px 30px;">
+          <p style="font-size:16px;line-height:1.75;color:#5c505b;margin:0 0 18px;">Hi ${safeName},</p>
+          <p style="font-size:16px;line-height:1.75;color:#5c505b;margin:0 0 18px;">You’re officially on the list: systems notes, careful questions, and the occasional well-behaved sparkle.</p>
+          <p style="font-size:16px;line-height:1.75;color:#5c505b;margin:0 0 24px;">I write about operating systems, parallelism, memory, safety, and the humans trying very hard not to be surprised by their abstractions.</p>
+          <div style="background:#eee2d7;border-left:4px solid #6d3655;padding:22px;margin:28px 0;">
+            <p style="margin:0 0 8px;text-transform:uppercase;letter-spacing:1.8px;color:#6d3655;font-size:10px;font-weight:bold;">Start here</p>
+            <h2 style="font-family:Georgia,serif;font-weight:400;font-size:28px;line-height:1.15;margin:0 0 10px;color:#2d2430;">${latestArticleTitle}</h2>
+            <p style="font-size:15px;line-height:1.65;color:#675b64;margin:0 0 18px;">A note on API design, cognitive load, and why “safe parallel code” keeps asking humans to hold too much in their heads.</p>
+            <a href="${latestArticleUrl}" style="display:inline-block;background:#2d2430;color:#fff;text-decoration:none;padding:13px 17px;">Read the latest article</a>
+          </div>
+          <p style="font-size:15px;line-height:1.7;color:#5c505b;margin:24px 0 0;">Warmly,<br /><strong>Flyness</strong></p>
+          <p style="font-size:12px;line-height:1.6;color:#897c84;margin-top:30px;border-top:1px solid #e2d6d2;padding-top:18px;">
+            No spam. No content confetti. Just new essays when they exist.<br />
+            <a href="${unsubscribeUrl}" style="color:#6d3655;">Unsubscribe</a>
+          </p>
+        </div>
+      </div>
     </div>
   </body>
 </html>`,

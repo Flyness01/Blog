@@ -260,9 +260,11 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
   width: 100%;
   border: 1px solid #cbbdbd;
   background: rgba(255,255,255,.45);
-  padding: 13px;
+  padding: 16px;
   outline: none;
   color: var(--ink);
+  font-size: 16px;
+  line-height: 1.4;
   text-transform: none;
   letter-spacing: 0;
 }

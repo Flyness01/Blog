@@ -19,7 +19,7 @@ export default function SubscribePage({ onBack }) {
 
     setSubmitting(true);
     const { error } = await supabase.from("subscribers").insert({
-      name: subscriber.name.trim() || null,
+      name: subscriber.name.trim(),
       email: subscriber.email.trim().toLowerCase(),
       source: "website",
     });
@@ -74,8 +74,10 @@ export default function SubscribePage({ onBack }) {
             </p>
             <form className="newsletter-form" onSubmit={subscribe}>
               <label>
-                Name <span>optional</span>
+                Name
                 <input
+                  required
+                  minLength="1"
                   maxLength="80"
                   value={subscriber.name}
                   onChange={(event) => setSubscriber({ ...subscriber, name: event.target.value })}

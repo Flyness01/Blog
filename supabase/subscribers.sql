@@ -9,8 +9,8 @@ create table if not exists public.subscribers (
       char_length(btrim(email)) between 5 and 254
       and email ~* '^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$'
     ),
-  name text
-    check (name is null or char_length(btrim(name)) between 1 and 80),
+  name text not null
+    check (char_length(btrim(name)) between 1 and 80),
   source text not null default 'website'
     check (source in ('website')),
   unsubscribe_token uuid not null default gen_random_uuid(),
@@ -26,6 +26,13 @@ alter table public.subscribers
 
 alter table public.subscribers
   add column if not exists subscribed_at timestamptz not null default now();
+
+update public.subscribers
+set name = 'Subscriber'
+where name is null or char_length(btrim(name)) = 0;
+
+alter table public.subscribers
+  alter column name set not null;
 
 create unique index if not exists subscribers_email_unique_idx
   on public.subscribers (lower(email));
@@ -52,7 +59,7 @@ create policy "Visitors can subscribe by email"
     source = 'website'
     and char_length(btrim(email)) between 5 and 254
     and email ~* '^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$'
-    and (name is null or char_length(btrim(name)) between 1 and 80)
+    and char_length(btrim(name)) between 1 and 80
   );
 
 comment on table public.subscribers is

@@ -80,10 +80,15 @@ function App() {
     }
   }, [route]);
 
+  useEffect(() => {
+    if (route === "home") return;
+
+    window.setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 0);
+  }, [route]);
+
   const openArticle = () => {
     window.history.pushState({}, "", "/writing/hidden-human");
     setRoute("article");
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const closeArticle = () => {
@@ -97,7 +102,9 @@ function App() {
     window.history.pushState({}, "", "/subscribe");
     setRoute("subscribe");
     setMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (route === "subscribe") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const closeSubscribe = () => {

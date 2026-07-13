@@ -17,10 +17,12 @@ button, input { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a { color: inherit; }
 
-.site-shell { overflow-x: hidden; }
+.site-shell { overflow-x: hidden; padding-top: 88px; }
 .nav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 20;
   height: 88px;
   width: min(1180px, 100%);
@@ -365,6 +367,7 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
 .article-source a { display: flex; align-items: center; gap: 5px; }
 
 @media (max-width: 800px) {
+  .site-shell { padding-top: 72px; }
   .nav { height: 72px; padding: 0 22px; }
   .menu-button { display: block; }
   .nav-links { display: none; position: fixed; z-index: 19; top: 72px; left: 0; right: 0; background: rgba(248, 244, 239, .98); padding: 28px; flex-direction: column; border-bottom: 1px solid #ddd1d5; }

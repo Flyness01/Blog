@@ -136,8 +136,9 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
 .newsletter {
   padding: 105px max(32px, calc((100vw - 1116px) / 2));
   background:
-    radial-gradient(circle at 14% 12%, rgba(233, 204, 208, .68), transparent 28%),
-    linear-gradient(135deg, #fbf6ee 0%, #efe2df 52%, #d9d9ce 100%);
+    radial-gradient(circle at 12% 15%, rgba(233, 204, 208, .2), transparent 30%),
+    #302830;
+  color: #f8f4ef;
 }
 .newsletter-card {
   display: grid;
@@ -150,18 +151,20 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
   line-height: 1;
   margin: 17px 0 26px;
 }
-.newsletter-copy h2 em { color: var(--plum); font-weight: 400; }
+.newsletter .kicker { color: #d9a8b6; }
+.newsletter-copy h2 em { color: #d9a8b6; font-weight: 400; }
 .newsletter-copy p {
   max-width: 430px;
-  color: #665b63;
+  color: #c9bec8;
   line-height: 1.8;
   font-size: 17px;
 }
 .newsletter-panel {
   position: relative;
-  background: rgba(255, 252, 246, .78);
-  border: 1px solid rgba(109, 54, 85, .16);
-  box-shadow: 22px 28px 70px rgba(70, 55, 67, .12);
+  background: #eee2d7;
+  color: var(--ink);
+  border: 1px solid rgba(248, 244, 239, .2);
+  box-shadow: 22px 28px 70px rgba(16, 12, 16, .22);
   padding: 52px;
   overflow: hidden;
 }
@@ -171,7 +174,7 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: rgba(185, 100, 125, .14);
+  background: rgba(185, 100, 125, .18);
   right: -80px;
   top: -85px;
 }
@@ -191,7 +194,7 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: #e6c2cb;
+  background: #d8b7bf;
   color: var(--plum);
   margin-bottom: 24px;
 }
@@ -219,13 +222,14 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
   line-height: 1.5;
 }
 .newsletter-button.secondary {
-  background: transparent;
-  color: var(--ink);
-  border: 1px solid rgba(45, 36, 48, .35);
+  background: var(--ink);
+  color: #f8f4ef;
+  border: 1px solid var(--ink);
 }
 .newsletter-button.secondary:hover {
+  background: var(--plum);
   border-color: var(--plum);
-  color: var(--plum);
+  color: #f8f4ef;
 }
 .newsletter-panel small {
   display: block;

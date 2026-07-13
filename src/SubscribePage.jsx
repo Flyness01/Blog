@@ -33,8 +33,7 @@ export default function SubscribePage({ onBack }) {
             ) : (
               <div className="newsletter-actions" aria-label="Subscription options">
                 <span className="newsletter-waitlist">
-                  Email subscription is being connected next. For now, consider this
-                  the velvet rope before the tiny research salon opens.
+                  The tiny research salon is almost open.
                 </span>
               </div>
             )}

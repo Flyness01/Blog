@@ -29,6 +29,10 @@
       "destination": "/"
     },
     {
+      "source": "/notes/:path*",
+      "destination": "/"
+    },
+    {
       "source": "/resume",
       "destination": "/"
     },

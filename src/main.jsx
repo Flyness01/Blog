@@ -12,6 +12,7 @@ import {
   ProjectsPage,
   ResearchPage,
   ResumePage,
+  SystemsBasicsPage,
   WritingPage,
 } from "./PortfolioPages";
 import "./styles.css";
@@ -21,6 +22,7 @@ const validRoutes = new Set([
   "/research",
   "/projects",
   "/notes",
+  "/notes/systems-basics",
   "/articles",
   "/resume",
   "/about",
@@ -73,6 +75,7 @@ function App() {
     "/projects": <ProjectsPage onNavigate={navigate} />,
     "/projects/selfcheckgpt": <ProjectDetailPage />,
     "/notes": <NotesPage onNavigate={navigate} />,
+    "/notes/systems-basics": <SystemsBasicsPage onNavigate={navigate} />,
     "/articles": <WritingPage onArticle={openArticle} />,
     "/resume": <ResumePage />,
     "/about": <AboutPage />,

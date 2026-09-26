@@ -78,9 +78,88 @@ export function NotesPage({ onNavigate }) {
     <main className="portfolio-page explorations-page">
       <PageIntro kicker="Notes" title={<>The basics, the roadblocks,<br /><em>and what I think so far</em></>} copy="These are learning notes rather than résumé entries: concepts in my own words, observations from experiments, misunderstandings I had to correct, and questions I still cannot neatly answer." />
       <section className="exploration-notes">
-        {notes.map((item, index) => <article key={item.title} className={`exploration-note note-${(index % 3) + 1}`}><span>{item.marker}</span><h2>{item.title}</h2><p>{item.description}</p></article>)}
+        {notes.map((item, index) => <article key={item.title} className={`exploration-note note-${(index % 3) + 1}`}><span>{item.marker}</span><h2>{item.title}</h2><p>{item.description}</p>{item.path && <button className="note-link" onClick={() => onNavigate(item.path)}>Open the notebook <ArrowRight size={15} /></button>}</article>)}
       </section>
       <PageCta text="Some questions eventually become essays" label="Read the writing" onClick={() => onNavigate("/articles")} />
+    </main>
+  );
+}
+
+export function SystemsBasicsPage({ onNavigate }) {
+  return (
+    <main className="portfolio-page systems-basics-page">
+      <PageIntro kicker="Systems basics · learning notebook" title={<>Parallelism is a promise.<br /><em>Overhead sends the invoice.</em></>} copy="These notes grew from CUDA coursework on a Colab Tesla T4. I am keeping the mechanics, measurements, and questions together because knowing how to launch parallel work is different from knowing when that work is worthwhile." />
+
+      <section className="basics-notebook">
+        <article className="basics-opening">
+          <span>01 / The foundation</span>
+          <h2>Parallelizable does not mean profitable</h2>
+          <p>A loop is a good candidate for data parallelism when each iteration can operate independently. SAXPY, vector addition, array squaring, and per-pixel Julia-set computation all have that shape: one output element does not need the result of its neighbor.</p>
+          <div className="thought-equation"><code>out[i] = a * x[i] + y[i]</code><small>Independent indices make concurrency possible. They do not make its overhead disappear.</small></div>
+          <p>The research question starts one level above correctness: after identifying independent work, what does the system spend to expose and execute that parallelism?</p>
+        </article>
+
+        <article>
+          <span>02 / Mapping work</span>
+          <h2>A thread needs both a job and a boundary</h2>
+          <p>CUDA turns coordinates in a launch configuration into data indices. The global index combines the block, the size of each block, and the thread’s position inside it:</p>
+          <pre><code>{`int i = blockIdx.x * blockDim.x + threadIdx.x;
+if (i < n) {
+    out[i] = a * x[i] + y[i];
+}`}</code></pre>
+          <p>The bounds check is part of the algorithm, not cleanup. Ceiling division launches enough threads to cover the array, which can also produce extra threads. Correct parallel code has to describe useful work and safely exclude work that does not exist.</p>
+          <aside className="margin-question"><small>Question in the margin</small><p>How much performance reasoning should an abstraction hide before it also hides the conditions required for correctness?</p></aside>
+        </article>
+
+        <article>
+          <span>03 / The whole path</span>
+          <h2>The kernel is only one part of the program</h2>
+          <div className="systems-flow" aria-label="Host to GPU execution flow"><div>Allocate</div><b>→</b><div>Copy to device</div><b>→</b><div>Launch</div><b>→</b><div>Synchronize</div><b>→</b><div>Copy back</div></div>
+          <p>CUDA events measured device work because kernels launch asynchronously; ordinary CPU wall-clock timing can stop before the GPU finishes unless execution is synchronized. But kernel-only timing answers a narrower question than end-to-end timing. A fast kernel can live inside a slow data-movement path.</p>
+          <div className="comparison-callout"><div><small>Kernel question</small><strong>How fast did the GPU execute?</strong></div><div><small>Systems question</small><strong>How long until the application had the result?</strong></div></div>
+        </article>
+
+        <article>
+          <span>04 / What I measured</span>
+          <h2>The crossover moved depending on what I counted</h2>
+          <p>In one repeated vector-addition exercise, kernel-only timing on the T4 first edged past the CPU around <strong>N = 1,000</strong> and peaked at <strong>172.94×</strong> at N = 300,000. That is evidence about the kernel benchmark, not a universal GPU crossover.</p>
+          <p>A separate SAXPY exercise made the distinction sharper. At N = 10,000,000, the kernel took 0.4626 ms while the full GPU path took 43.8740 ms; the CPU took 43.5054 ms. At N = 50,000,000, the full GPU path was again slower than the CPU even though the kernel alone was much faster.</p>
+          <div className="basics-measures">
+            <div><small>Workload</small><strong>SAXPY · N = 10M</strong></div>
+            <div><small>Kernel only</small><strong>0.4626 ms</strong></div>
+            <div><small>GPU end to end</small><strong>43.8740 ms</strong></div>
+            <div><small>CPU</small><strong>43.5054 ms</strong></div>
+          </div>
+          <p className="measurement-note">These are coursework observations from individual Colab T4 runs. They may include warm-up and platform variation, so I use them to motivate better experiments, not to claim a general hardware ranking.</p>
+        </article>
+
+        <article>
+          <span>05 / A visual case</span>
+          <h2>Workload shape matters</h2>
+          <p>A Julia-set image offered a more compute-heavy example: one million pixels, each independently iterating the same complex-number rule up to 200 times. That regular, high-volume structure gave the GPU enough work to amortize more of its setup cost.</p>
+          <p>The useful comparison was not merely that the GPU ran faster. The CPU and GPU implementations also had to produce the same image. Performance without an equivalence check would leave open the possibility that the “faster” version simply did different work.</p>
+          <blockquote>Speedup is meaningful only after the outputs and the work required to produce them are comparable.</blockquote>
+        </article>
+
+        <article>
+          <span>06 / What I think now</span>
+          <h2>My checklist before believing a speedup</h2>
+          <ol className="research-checklist">
+            <li><strong>Find independence.</strong><p>Which operations can proceed without waiting on one another?</p></li>
+            <li><strong>Define the boundary.</strong><p>Am I timing a kernel, a transfer, or the complete user-visible operation?</p></li>
+            <li><strong>Verify equivalence.</strong><p>Did both implementations perform the same work and produce acceptable results?</p></li>
+            <li><strong>Repeat and vary scale.</strong><p>Does the result survive warm-up, noise, different N values, and different launch configurations?</p></li>
+            <li><strong>Look for the new bottleneck.</strong><p>If computation became cheaper, did memory bandwidth, transfer, or synchronization take its place?</p></li>
+          </ol>
+        </article>
+
+        <article className="basics-next">
+          <span>07 / Questions I am carrying forward</span>
+          <h2>From CUDA foundations to systems research</h2>
+          <div className="question-stack"><p>Can data remain near the accelerator long enough to amortize transfer cost across several operations?</p><p>How do batching and concurrent execution change latency, throughput, memory pressure, and correctness?</p><p>When does the best launch configuration change with hardware, workload size, or resource use?</p><p>Which metric best represents the experience of the application rather than one isolated component?</p></div>
+          <button className="note-link" onClick={() => onNavigate("/projects/selfcheckgpt")}>See these questions in my inference project <ArrowRight size={15} /></button>
+        </article>
+      </section>
     </main>
   );
 }

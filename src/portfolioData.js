@@ -34,8 +34,9 @@ export const projects = [
 export const notes = [
   {
     marker: "Foundations 01",
-    title: "What parallelism actually promises",
-    description: "Parallelism means arranging work so that parts of it can make progress at the same time. That sounds simple; the difficult part is finding independent work and coordinating it without spending the expected speedup.",
+    title: "Systems basics: when parallel work pays off",
+    description: "Notes from CUDA coursework on independent work, thread mapping, memory movement, timing, and why the fastest kernel is not automatically the fastest program.",
+    path: "/notes/systems-basics",
   },
   {
     marker: "Foundations 02",

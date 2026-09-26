@@ -153,8 +153,20 @@ if (i < n) {
           </ol>
         </article>
 
+        <article>
+          <span>07 / Where I carried this forward</span>
+          <h2>The concepts became ways of seeing real systems</h2>
+          <p>The coursework gave me vocabulary for performance problems I had already encountered and a method for investigating new ones. I did not take a CUDA kernel and transplant it into every setting; I carried forward the questions behind it.</p>
+          <div className="concept-bridges">
+            <div><small>Independent work</small><h3>Bulk backend operations</h3><p>When repeated work in a request path began timing out for larger workloads, I separated the per-item operations, moved them into asynchronous execution, and used concurrency to keep the blocking path within its runtime limit.</p></div>
+            <div><small>Amortizing repeated setup</small><h3>Multi-sample LLM inference</h3><p>SelfCheckGPT-style evaluation repeats the same prompt to obtain several responses. That made redundant prompt processing look like the same class of systems question: what can be shared, what must remain independent, and when does reuse materially reduce end-to-end latency?</p></div>
+            <div><small>Communication structure</small><h3>Distributed-system resilience</h3><p>Exploring malware propagation and software-defined networking extended the question beyond one processor: how do communication patterns and changes to network topology affect coordination, containment, and system behavior?</p></div>
+          </div>
+          <aside className="margin-question"><small>The connective idea</small><p>Parallelism is not one technique. It is a recurring decision about decomposition, placement, communication, and the cost of coordination.</p></aside>
+        </article>
+
         <article className="basics-next">
-          <span>07 / Questions I am carrying forward</span>
+          <span>08 / Questions I am carrying forward</span>
           <h2>From CUDA foundations to systems research</h2>
           <div className="question-stack"><p>Can data remain near the accelerator long enough to amortize transfer cost across several operations?</p><p>How do batching and concurrent execution change latency, throughput, memory pressure, and correctness?</p><p>When does the best launch configuration change with hardware, workload size, or resource use?</p><p>Which metric best represents the experience of the application rather than one isolated component?</p></div>
           <button className="note-link" onClick={() => onNavigate("/projects/selfcheckgpt")}>See these questions in my inference project <ArrowRight size={15} /></button>

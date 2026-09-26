@@ -13,6 +13,26 @@
       "destination": "/"
     },
     {
+      "source": "/research",
+      "destination": "/"
+    },
+    {
+      "source": "/projects",
+      "destination": "/"
+    },
+    {
+      "source": "/projects/:path*",
+      "destination": "/"
+    },
+    {
+      "source": "/notes",
+      "destination": "/"
+    },
+    {
+      "source": "/resume",
+      "destination": "/"
+    },
+    {
       "source": "/about",
       "destination": "/"
     },

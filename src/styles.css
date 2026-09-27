@@ -335,6 +335,11 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
 .resume-row strong { font-family: "DM Serif Display", serif; font-size: 23px; font-weight: 400; display: block; }
 .resume-row span { display: block; color: #847781; font-size: 11px; margin: 7px 0 17px; text-transform: uppercase; letter-spacing: 1px; }
 .resume-row p { color: #655963; line-height: 1.7; margin: 0; }
+.resume-stack { display: grid; gap: 30px; }
+.resume-entry + .resume-entry { padding-top: 28px; border-top: 1px solid #e3d9d8; }
+.resume-entry span { margin-bottom: 12px; }
+.resume-skills { display: grid; gap: 13px; }
+.resume-skills b { color: var(--ink); margin-right: 7px; }
 .resume-note { color: #8a7e86; font-size: 11px; margin: 28px 0 0; }
 .about-page { background: #eee5dc; }
 .about-standalone { min-height: calc(100vh - 88px); }

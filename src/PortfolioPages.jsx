@@ -288,11 +288,27 @@ export function ResumePage() {
     <main className="portfolio-page resume-page">
       <PageIntro kicker="Résumé" title={<>Research questions,<br /><em>engineering practice</em></>} copy="A concise view of the experiences currently shaping my work." />
       <section className="resume-sheet">
-        <div className="resume-name"><h2>Flyness Namatama</h2><p>Systems research &amp; software engineering</p></div>
-        <div className="resume-row"><h3>Research focus</h3><div><strong>Efficient multi-sample hallucination detection</strong><span>February 2026–present</span><p>Studying the latency, throughput, memory, and accuracy trade-offs involved in distributing multi-sample detection.</p></div></div>
-        <div className="resume-row"><h3>Experience</h3><div><strong>Software Engineering Intern · Slack</strong><span>Summers 2025 &amp; 2026</span><p>Worked on workload-dependent latency and backend execution problems, including asynchronous and concurrent approaches for operations at scale.</p></div></div>
-        <div className="resume-row"><h3>Selected coursework</h3><div><strong>Operating systems · Parallel processing</strong><p>Coursework that shaped my interests in execution, synchronization, memory behavior, heterogeneous hardware, and systems performance.</p></div></div>
-        <p className="resume-note">This web résumé includes only details currently documented on this site.</p>
+        <div className="resume-name"><h2>Flyness Namatama</h2><p>Computer systems · software engineering</p></div>
+        <div className="resume-row"><h3>Research interests</h3><div><p>Computer systems, operating systems, parallel and heterogeneous runtimes, hardware–software co-design, concurrency, and systems reliability.</p></div></div>
+        <div className="resume-row"><h3>Education</h3><div className="resume-stack">
+          <div className="resume-entry"><strong>Grambling State University</strong><span>B.S. Computer Science · Expected May 2027 · GPA 3.94/4.0</span><p>Selected coursework includes Operating Systems, Parallel Processing, Computer Architecture, Database Management, Big Data &amp; Cloud Security, Applied Cryptography, Data Structures &amp; Algorithms, Discrete Structures, and Calculus I.</p></div>
+          <div className="resume-entry"><strong>eCornell</strong><span>Machine Learning Certificate</span></div>
+        </div></div>
+        <div className="resume-row"><h3>Research &amp; technical work</h3><div className="resume-stack">
+          <div className="resume-entry"><strong>Parallel computing &amp; systems performance</strong><span>CUDA C · C++ · Spring 2026</span><p>Implemented and benchmarked CUDA kernels on NVIDIA Tesla T4 GPUs, comparing CPU and GPU execution while examining thread configuration, memory transfers, launch overhead, workload scaling, and measurement boundaries.</p></div>
+          <div className="resume-entry"><strong>Distributed in-memory data processing &amp; caching engine</strong><span>C++ · POSIX Threads · Python · Spring 2026</span><p>Developed a multithreaded, partition-aware system to explore synchronization, concurrent access, caching, contention, memory behavior, and throughput across partitioned datasets.</p></div>
+          <div className="resume-entry"><strong>Transformer runtime profiling &amp; hallucination audit pipeline</strong><span>Python · PyTorch · Hugging Face · Spring 2026</span><p>Investigated transformer inference, context processing, retrieval-augmented generation, hallucination detection, and the runtime and evaluation trade-offs involved in auditing generated responses.</p></div>
+        </div></div>
+        <div className="resume-row"><h3>Experience</h3><div className="resume-stack">
+          <div className="resume-entry"><strong>Software Engineering Intern · Salesforce (Slack)</strong><span>Admin &amp; Trust Infrastructure · May–August 2026</span><p>Contributed to concurrency and performance work for bulk operations, tested larger action batches, and investigated runtime bottlenecks and reliability before rollout.</p></div>
+          <div className="resume-entry"><strong>Backend Software Engineering Intern · Salesforce (Slack)</strong><span>Enterprise Tools &amp; Frameworks · May–August 2025</span><p>Built backend infrastructure involving public APIs, asynchronous I/O, structured logging, validation, defensive programming, testing, and production-facing debugging.</p></div>
+          <div className="resume-entry"><strong>Emerging Leaders Engineering Fellow · Goldman Sachs</strong><span>October 2024–January 2025</span><p>Collaborated on a quantitative tool for modeling historical mutual-fund returns and participated in engineering sessions on architecture, testing, and algorithms.</p></div>
+          <div className="resume-entry"><strong>Discovery Intern · Deloitte</strong><span>June–July 2024</span><p>Analyzed operational workflows, translated constraints into technical requirements, and communicated solution recommendations and design trade-offs.</p></div>
+        </div></div>
+        <div className="resume-row"><h3>Technical skills</h3><div className="resume-skills"><p><b>Languages</b> C/C++, CUDA C, Hack (HHVM), Python, JavaScript, SQL</p><p><b>Systems</b> GPU programming, memory hierarchies, synchronization, parallel work distribution, concurrency, backend reliability</p><p><b>Tools</b> Git, Linux/Unix, CI/CD, feature flags, PyTorch, Hugging Face Transformers, NumPy, pandas, scikit-learn</p></div></div>
+        <div className="resume-row"><h3>Honors</h3><div><p>Top 5 Finalist, Future Tech Challenge at Apple Campus (2026) · 3rd Place, Entrepreneurship Pelican Cup (2026) · 3rd Place, Bayou Classic BizTech Challenge (2025–2026) · NSBE Highest Academic Achievement Award (2025) · Presidential Academic Scholarship · President’s List · Tapia 2024 Scholar</p></div></div>
+        <div className="resume-row"><h3>Leadership</h3><div><p>NSBE Programs Chair (2024–2025) · Women in Technology Events Coordinator · African Students Association Secretary · ColorStack and Rewriting the Code fellow and participant</p></div></div>
+        <p className="resume-note">Public web résumé · Personal contact details omitted.</p>
       </section>
     </main>
   );

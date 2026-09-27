@@ -19,7 +19,7 @@ export const researchInterests = [
 export const projects = [
   {
     slug: "selfcheckgpt",
-    title: "Replica-SelfCheckGPT",
+    title: "What does SelfCheckGPT cost to run locally?",
     description: "An early research repository for testing local model behavior and thinking about the systems cost of multi-sample hallucination detection.",
     repository: "https://github.com/Flyness01/Replica-SelfCheckGPT",
   },

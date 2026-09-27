@@ -42,7 +42,7 @@ export function LearningBlogPage({ onNavigate, onArticle }) {
         <div className="previous-writing">
           <span className="kicker">Previous writing</span>
           <div className="learning-links">
-            <button onClick={() => onNavigate("/projects/selfcheckgpt")}><span>Efficient multi-sample hallucination detection</span><ArrowRight /></button>
+            <button onClick={() => onNavigate("/projects/selfcheckgpt")}><span>What does SelfCheckGPT cost to run locally?</span><ArrowRight /></button>
             <button onClick={() => onNavigate("/notes/systems-basics")}><span>When parallel work pays off</span><ArrowRight /></button>
             <button onClick={() => onNavigate("/writing/partitioned-cache")}><span>Reducing the lock scope with a partitioned cache</span><ArrowRight /></button>
             <button onClick={() => onNavigate("/writing/network-propagation")}><span>Can topology slow network propagation?</span><ArrowRight /></button>
@@ -67,7 +67,7 @@ export function ResearchPage({ onNavigate }) {
       <section className="selected-research">
         <div className="section-heading light-heading"><div><span className="kicker">Selected work</span><h2>How I am exploring<br /><em>these interests</em></h2></div><p>I am early in this work, so I separate ongoing research, technical writing, and coursework rather than presenting all of it as publication.</p></div>
         <div className="selected-research-grid">
-          <article><span>Ongoing research exploration</span><h3>Efficient multi-sample hallucination detection</h3><p>Measuring repeated local inference and investigating when shared prompt-prefix state can reduce latency without changing generated output.</p><button onClick={() => onNavigate("/projects/selfcheckgpt")}>Read the project notebook <ArrowRight size={15} /></button></article>
+          <article><span>Ongoing research exploration</span><h3>What does SelfCheckGPT cost to run locally?</h3><p>Measuring repeated local inference and investigating when shared prompt-prefix state can reduce latency without changing generated output.</p><button onClick={() => onNavigate("/projects/selfcheckgpt")}>Read the project notebook <ArrowRight size={15} /></button></article>
           <article><span>Foundational notebook</span><h3>When parallel work pays off</h3><p>Connecting CUDA thread mapping, transfer overhead, timing boundaries, and correctness checks to the systems questions I now carry into new work.</p><button onClick={() => onNavigate("/notes/systems-basics")}>Read Systems Basics <ArrowRight size={15} /></button></article>
         </div>
       </section>
@@ -206,7 +206,7 @@ export function ProjectDetailPage({ onNavigate }) {
   return (
     <main className="portfolio-page project-detail-page">
       <WritingBackButton onNavigate={onNavigate} />
-      <PageIntro kicker="Project notebook" title={<>Replica-<br /><em>SelfCheckGPT</em></>} copy="An early repository for asking a systems question about hallucination detection: what does it cost to generate and compare multiple model responses locally?" />
+      <PageIntro kicker="Project notebook" title={<>What does SelfCheckGPT<br /><em>cost to run locally?</em></>} copy="An early repository for asking a systems question about hallucination detection: what does it cost to generate and compare multiple model responses locally?" />
       <section className="project-notebook">
         <article>
           <span>01 / Research question</span><h2>From factuality to systems cost</h2>

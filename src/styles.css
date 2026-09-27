@@ -133,15 +133,6 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
 .profile-interests .kicker { color: #d9a8b6; }
 .profile-interest-simple { align-self: center; border-top: 1px solid #5b4f58; }
 .profile-interest-simple span { display: block; padding: 24px 0; border-bottom: 1px solid #5b4f58; color: #f8f4ef; font-family: "DM Serif Display", serif; font-size: clamp(23px, 2.5vw, 31px); line-height: 1.25; }
-.profile-work { padding: 105px max(32px, calc((100vw - 1116px) / 2)); background: #eee5dc; }
-.profile-section-heading { margin-bottom: 55px; }
-.profile-section-heading h2 { margin-top: 18px; font-size: clamp(40px, 5vw, 62px); }
-.profile-work-list { border-top: 1px solid #cfc1c2; }
-.profile-work-list button { width: 100%; border: 0; border-bottom: 1px solid #cfc1c2; background: transparent; color: var(--ink); padding: 31px 4px; display: grid; grid-template-columns: 1fr 1fr 35px; gap: 28px; text-align: left; align-items: center; cursor: pointer; }
-.profile-work-list h3 { margin: 0; font-family: "DM Serif Display", serif; font-size: 25px; font-weight: 400; line-height: 1.2; }
-.profile-work-list p { margin: 0; color: #6d6169; line-height: 1.6; font-size: 13px; }
-.profile-work-list svg { color: var(--plum); transition: transform .2s ease; }
-.profile-work-list button:hover svg { transform: translateX(5px); }
 
 .portfolio-map { background: #eee5dc; padding: 105px max(32px, calc((100vw - 1116px) / 2)); }
 .light-heading .kicker { color: var(--plum); }
@@ -661,10 +652,6 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
   .profile-intro h1 { font-size: clamp(45px, 13vw, 66px); }
   .profile-lede { font-size: 19px !important; }
   .profile-interests { padding: 80px 22px; grid-template-columns: 1fr; gap: 45px; }
-  .profile-work { padding: 80px 22px; }
-  .profile-work-list button { grid-template-columns: 1fr 30px; gap: 13px; }
-  .profile-work-list button h3, .profile-work-list button p { grid-column: 1; }
-  .profile-work-list button svg { grid-column: 2; grid-row: 1 / 3; }
   .portfolio-map { padding: 80px 22px; }
   .map-grid { grid-template-columns: 1fr; }
   .map-grid button { min-height: 225px; }

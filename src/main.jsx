@@ -6,6 +6,7 @@ import SubscribePage from "./SubscribePage";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 import {
   LearningBlogPage,
+  NetworkPropagationPage,
   PartitionedCachePage,
   ProjectDetailPage,
   ProfessionalHomePage,
@@ -22,6 +23,7 @@ const validRoutes = new Set([
   "/subscribe",
   "/writing/hidden-human",
   "/writing/partitioned-cache",
+  "/writing/network-propagation",
   "/projects/selfcheckgpt",
 ]);
 
@@ -69,6 +71,7 @@ function App() {
     "/projects/selfcheckgpt": <ProjectDetailPage onNavigate={navigate} />,
     "/notes/systems-basics": <SystemsBasicsPage onNavigate={navigate} />,
     "/writing/partitioned-cache": <PartitionedCachePage onNavigate={navigate} />,
+    "/writing/network-propagation": <NetworkPropagationPage onNavigate={navigate} />,
     "/blog": <LearningBlogPage onNavigate={navigate} onArticle={openArticle} />,
     "/resume": <ResumePage />,
   };

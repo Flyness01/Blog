@@ -44,6 +44,7 @@ export function LearningBlogPage({ onNavigate, onArticle }) {
           <div className="learning-links">
             <button onClick={() => onNavigate("/projects/selfcheckgpt")}><span>Efficient multi-sample hallucination detection</span><ArrowRight /></button>
             <button onClick={() => onNavigate("/notes/systems-basics")}><span>When parallel work pays off</span><ArrowRight /></button>
+            <button onClick={() => onNavigate("/writing/partitioned-cache")}><span>Reducing the lock scope with a partitioned cache</span><ArrowRight /></button>
           </div>
         </div>
       </section>
@@ -264,6 +265,23 @@ export function ProjectDetailPage({ onNavigate }) {
   );
 }
 
+export function PartitionedCachePage({ onNavigate }) {
+  return (
+    <main className="portfolio-page project-detail-page">
+      <WritingBackButton onNavigate={onNavigate} />
+      <PageIntro kicker="Systems notebook" title={<>Reducing the lock scope<br /><em>with a partitioned cache</em></>} copy="A fresh public implementation of the concurrency ideas behind my in-memory data-processing work: partition the key space, synchronize each partition independently, and measure what changes under concurrent access." />
+      <section className="project-notebook">
+        <article><span>01 / The question</span><h2>Does partitioning create useful concurrency?</h2><p>A single global lock protects a map simply, but it also makes unrelated keys wait on one another. This implementation hashes each key into one of a configurable number of partitions. Every partition owns its map and a POSIX read–write lock, so operations on different partitions can proceed independently.</p><blockquote>The design does not remove synchronization. It narrows the part of the system that each lock must protect.</blockquote></article>
+        <article><span>02 / What exists now</span><h2>A small implementation with an explicit boundary</h2><p>The repository implements string key/value <code>put</code>, <code>get</code>, and <code>erase</code> operations in C++17. Reads take a shared lock; writes take an exclusive lock. A concurrent test launches eight threads that write and immediately verify separate keys.</p><div className="setup-grid"><div><small>Language</small><strong>C++17</strong></div><div><small>Synchronization</small><strong>POSIX read–write locks</strong></div><div><small>Placement</small><strong>Hash-based partitions</strong></div><div><small>Verification</small><strong>Concurrent correctness test</strong></div></div></article>
+        <article><span>03 / First validation</span><h2>Correctness before comparison</h2><p>The initial test completed with 16,000 entries after eight threads each performed 2,000 write-and-read checks. A smoke benchmark then completed 400,000 mixed operations with sixteen partitions. That run confirms that the benchmark works; it is not yet evidence that sixteen partitions are optimal or faster than another design.</p><p className="measurement-note">The benchmark result depends on the machine, workload, compiler, key distribution, and warm-up state. Comparative claims require repeated trials across controlled variants.</p></article>
+        <article><span>04 / What “distributed” does not mean yet</span><h2>Local partitioning is a foundation, not a network</h2><p>The current repository is thread-safe within one process. It does not yet implement remote shards, replication, persistence, membership, failure recovery, or a network protocol. I am documenting that boundary because partitioning data locally and distributing it across machines introduce different coordination and reliability costs.</p></article>
+        <article><span>05 / Next experiments</span><h2>The interesting work begins with comparison</h2><ul className="lesson-list"><li>Sweep partition counts while holding workload and thread count fixed.</li><li>Compare a global mutex, partitioned mutexes, and partitioned read–write locks.</li><li>Add skewed key access to create hot partitions.</li><li>Record latency percentiles alongside aggregate throughput.</li><li>Add bounded capacity before comparing eviction strategies.</li><li>Only then explore how local partitions might become remote shards.</li></ul></article>
+        <div className="repository-card"><div><span className="kicker">Repository</span><h2>Implementation, tests, and benchmark</h2><p>The code keeps the synchronization model deliberately small enough to inspect and extend.</p></div><a href="https://github.com/Flyness01/Distributed-In-Memory-Cache" target="_blank" rel="noreferrer">Open on GitHub <ArrowUpRight size={17} /></a></div>
+      </section>
+    </main>
+  );
+}
+
 export function WritingPage({ onArticle, onNavigate }) {
   return (
     <main className="portfolio-page writing-page">
@@ -287,7 +305,7 @@ export function ResumePage() {
         </div></div>
         <div className="resume-row"><h3>Research &amp; technical work</h3><div className="resume-stack">
           <div className="resume-entry"><strong>Parallel computing &amp; systems performance</strong><span>CUDA C · C++ · Spring 2026</span><p>Implemented and benchmarked CUDA kernels on NVIDIA Tesla T4 GPUs, comparing CPU and GPU execution while examining thread configuration, memory transfers, launch overhead, workload scaling, and measurement boundaries.</p></div>
-          <div className="resume-entry"><strong>Distributed in-memory data processing &amp; caching engine</strong><span>C++ · POSIX Threads · Python · Spring 2026</span><p>Developed a multithreaded, partition-aware system to explore synchronization, concurrent access, caching, contention, memory behavior, and throughput across partitioned datasets.</p></div>
+          <div className="resume-entry"><strong>Partitioned in-memory data processing &amp; caching engine</strong><span>C++ · POSIX Threads · Spring 2026</span><p>Developed a multithreaded, partition-aware key/value cache to explore synchronization, concurrent access, lock scope, contention, and throughput. The current public implementation is single-process; multi-node distribution remains future work.</p></div>
           <div className="resume-entry"><strong>Transformer runtime profiling &amp; hallucination audit pipeline</strong><span>Python · PyTorch · Hugging Face · Spring 2026</span><p>Investigated transformer inference, context processing, retrieval-augmented generation, hallucination detection, and the runtime and evaluation trade-offs involved in auditing generated responses.</p></div>
         </div></div>
         <div className="resume-row"><h3>Experience</h3><div className="resume-stack">

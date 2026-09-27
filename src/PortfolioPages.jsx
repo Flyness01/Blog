@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, ArrowUpRight, Cpu, Gauge, Network } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Cpu, Gauge, Network } from "lucide-react";
 import CommentsSection from "./CommentsSection";
 import { notes, projects, researchInterests } from "./portfolioData";
 
@@ -46,7 +46,18 @@ export function LearningBlogPage({ onNavigate, onArticle }) {
         <div className="doodle" aria-hidden="true">curious<br />about it all <span>↝</span></div>
       </section>
 
-      <FeaturedWriting onArticle={onArticle} />
+      <section className="learning-collection">
+        <div className="section-heading">
+          <div><span className="kicker">Learning in public</span><h2>The work,<br /><em>as it unfolds</em></h2></div>
+          <p>Projects, notes, and published writing gathered in one place.</p>
+        </div>
+        <div className="learning-links">
+          <button onClick={() => onNavigate("/projects/selfcheckgpt")}><span>Project trail</span><ArrowRight /></button>
+          <button onClick={() => onNavigate("/notes/systems-basics")}><span>Systems basics</span><ArrowRight /></button>
+        </div>
+        <div className="collection-label"><span className="kicker">Latest writing</span></div>
+        <FeaturedWriting onArticle={onArticle} compact />
+      </section>
       <CommentsSection postSlug="general" kicker="In the margins" description="Questions, reflections, suggestions, and thoughts about this space are welcome here." />
     </main>
   );
@@ -111,6 +122,7 @@ export function NotesPage({ onNavigate }) {
 export function SystemsBasicsPage({ onNavigate }) {
   return (
     <main className="portfolio-page systems-basics-page">
+      <WritingBackButton onNavigate={onNavigate} />
       <PageIntro kicker="Systems basics · learning notebook" title={<>Parallelism is a promise.<br /><em>Overhead sends the invoice.</em></>} copy="These notes grew from CUDA coursework on a Colab Tesla T4. I am keeping the mechanics, measurements, and questions together because knowing how to launch parallel work is different from knowing when that work is worthwhile." />
 
       <section className="basics-notebook">
@@ -199,9 +211,10 @@ if (i < n) {
   );
 }
 
-export function ProjectDetailPage() {
+export function ProjectDetailPage({ onNavigate }) {
   return (
     <main className="portfolio-page project-detail-page">
+      <WritingBackButton onNavigate={onNavigate} />
       <PageIntro kicker="Project notebook" title={<>Replica-<br /><em>SelfCheckGPT</em></>} copy="An early repository for asking a systems question about hallucination detection: what does it cost to generate and compare multiple model responses locally?" />
       <section className="project-notebook">
         <article>
@@ -305,6 +318,10 @@ export function AboutPage() {
 
 function PageIntro({ kicker, title, copy }) {
   return <section className="page-intro"><span className="kicker">{kicker}</span><h1>{title}</h1><p>{copy}</p></section>;
+}
+
+function WritingBackButton({ onNavigate }) {
+  return <div className="writing-back-wrap"><button className="back-link" onClick={() => onNavigate("/blog")}><ArrowLeft size={16} /> Back to the blog</button></div>;
 }
 
 function PageCta({ text, label, onClick }) {

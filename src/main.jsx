@@ -64,7 +64,7 @@ function App() {
 
   const pages = {
     "/": <ProfessionalHomePage onNavigate={navigate} onArticle={openArticle} />,
-    "/projects/selfcheckgpt": <ProjectDetailPage />,
+    "/projects/selfcheckgpt": <ProjectDetailPage onNavigate={navigate} />,
     "/notes/systems-basics": <SystemsBasicsPage onNavigate={navigate} />,
     "/blog": <LearningBlogPage onNavigate={navigate} onArticle={openArticle} />,
     "/resume": <ResumePage />,

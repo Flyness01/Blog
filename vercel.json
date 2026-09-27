@@ -13,6 +13,10 @@
       "destination": "/"
     },
     {
+      "source": "/blog",
+      "destination": "/"
+    },
+    {
       "source": "/research",
       "destination": "/"
     },

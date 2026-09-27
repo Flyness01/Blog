@@ -23,6 +23,7 @@ const validRoutes = new Set([
   "/projects",
   "/notes",
   "/notes/systems-basics",
+  "/blog",
   "/articles",
   "/resume",
   "/about",
@@ -35,6 +36,7 @@ const getRoute = () => {
   if (window.location.hash === "#/writing/hidden-human") return "/writing/hidden-human";
   if (window.location.hash === "#/subscribe") return "/subscribe";
   if (window.location.pathname === "/explorations") return "/notes";
+  if (window.location.pathname === "/articles") return "/blog";
   return validRoutes.has(window.location.pathname) ? window.location.pathname : "/";
 };
 
@@ -76,7 +78,7 @@ function App() {
     "/projects/selfcheckgpt": <ProjectDetailPage />,
     "/notes": <NotesPage onNavigate={navigate} />,
     "/notes/systems-basics": <SystemsBasicsPage onNavigate={navigate} />,
-    "/articles": <WritingPage onArticle={openArticle} />,
+    "/blog": <WritingPage onArticle={openArticle} onNavigate={navigate} />,
     "/resume": <ResumePage />,
     "/about": <AboutPage />,
   };
@@ -85,7 +87,7 @@ function App() {
     <div className="site-shell">
       <SiteHeader route={route} onNavigate={navigate} onSubscribe={openSubscribe} />
       {route === "/writing/hidden-human" ? (
-        <ArticlePage onBack={() => navigate("/articles")} />
+        <ArticlePage onBack={() => navigate("/blog")} />
       ) : route === "/subscribe" ? (
         <SubscribePage onBack={() => navigate("/")} />
       ) : (

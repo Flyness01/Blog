@@ -1,7 +1,7 @@
 import React from "react";
-import { ArrowRight, ArrowUpRight, BookOpen, Cpu, Gauge, Network, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BookOpen, Cpu, Gauge, Network } from "lucide-react";
 import CommentsSection from "./CommentsSection";
-import { currentQuestions, notes, projects, researchInterests } from "./portfolioData";
+import { notes, projects, researchInterests } from "./portfolioData";
 
 export function HomePage({ onNavigate, onArticle }) {
   return (
@@ -20,9 +20,9 @@ export function HomePage({ onNavigate, onArticle }) {
           <p>The polished work lives beside the questions, experiments, and class notes that helped shape it.</p>
         </div>
         <div className="map-grid">
-          <button onClick={() => onNavigate("/research")}><Cpu /><span>Research</span><small>The areas and questions guiding my work.</small><ArrowRight /></button>
-          <button onClick={() => onNavigate("/projects")}><Gauge /><span>Projects</span><small>Research, coursework, and engineering work.</small><ArrowRight /></button>
-          <button onClick={() => onNavigate("/notes")}><BookOpen /><span>Notes</span><small>Concepts, reflections, and roadblocks in the margins.</small><ArrowRight /></button>
+          <button className="map-card-no-icon" onClick={() => onNavigate("/research")}><span>Research</span><small>The areas and questions guiding my work.</small><ArrowRight /></button>
+          <button className="map-card-no-icon" onClick={() => onNavigate("/projects")}><span>Projects</span><small>Research, coursework, and engineering work.</small><ArrowRight /></button>
+          <button onClick={() => onNavigate("/blog")}><BookOpen /><span>Blog</span><small>Articles, research notes, and ideas still taking shape.</small><ArrowRight /></button>
         </div>
       </section>
 
@@ -35,18 +35,21 @@ export function HomePage({ onNavigate, onArticle }) {
 export function ResearchPage({ onNavigate }) {
   return (
     <main className="portfolio-page research-page">
-      <PageIntro kicker="Research" title={<>The questions that keep<br /><em>pulling me closer</em></>} copy="I am interested in how systems can better exploit parallel and heterogeneous hardware as workloads grow, and in the costs that keep theoretical speedup from becoming real performance." />
+      <PageIntro kicker="Research interests" title={<>Systems that make<br /><em>parallel work worthwhile</em></>} copy="I am interested in how systems use parallel and heterogeneous hardware as workloads grow, and in the execution, memory, communication, and synchronization costs that keep theoretical speedup from becoming real performance." />
       <section className="interest-list">
         {researchInterests.map((interest, index) => {
           const Icon = [Cpu, Gauge, Network][index];
           return <article key={interest.number}><span>{interest.number}</span><Icon /><h2>{interest.title}</h2><p>{interest.description}</p></article>;
         })}
       </section>
-      <section className="question-page-block">
-        <span className="kicker">Questions in progress</span>
-        <div>{currentQuestions.map((question, index) => <p key={question}><small>0{index + 1}</small>{question}</p>)}</div>
+      <section className="selected-research">
+        <div className="section-heading light-heading"><div><span className="kicker">Selected work</span><h2>How I am exploring<br /><em>these interests</em></h2></div><p>I am early in this work, so I separate ongoing research, technical writing, and coursework rather than presenting all of it as publication.</p></div>
+        <div className="selected-research-grid">
+          <article><span>Ongoing research exploration</span><h3>Efficient multi-sample hallucination detection</h3><p>Measuring repeated local inference and investigating when shared prompt-prefix state can reduce latency without changing generated output.</p><button onClick={() => onNavigate("/projects/selfcheckgpt")}>Read the project notebook <ArrowRight size={15} /></button></article>
+          <article><span>Foundational notebook</span><h3>When parallel work pays off</h3><p>Connecting CUDA thread mapping, transfer overhead, timing boundaries, and correctness checks to the systems questions I now carry into new work.</p><button onClick={() => onNavigate("/notes/systems-basics")}>Read Systems Basics <ArrowRight size={15} /></button></article>
+        </div>
       </section>
-      <PageCta text="See how these questions became projects" label="View projects" onClick={() => onNavigate("/projects")} />
+      <PageCta text="See how these interests became projects" label="View projects" onClick={() => onNavigate("/projects")} />
     </main>
   );
 }
@@ -80,7 +83,7 @@ export function NotesPage({ onNavigate }) {
       <section className="exploration-notes">
         {notes.map((item, index) => <article key={item.title} className={`exploration-note note-${(index % 3) + 1}`}><span>{item.marker}</span><h2>{item.title}</h2><p>{item.description}</p>{item.path && <button className="note-link" onClick={() => onNavigate(item.path)}>Open the notebook <ArrowRight size={15} /></button>}</article>)}
       </section>
-      <PageCta text="Some questions eventually become essays" label="Read the writing" onClick={() => onNavigate("/articles")} />
+      <PageCta text="Some questions eventually become essays" label="Read the blog" onClick={() => onNavigate("/blog")} />
     </main>
   );
 }
@@ -239,11 +242,12 @@ export function ProjectDetailPage() {
   );
 }
 
-export function WritingPage({ onArticle }) {
+export function WritingPage({ onArticle, onNavigate }) {
   return (
     <main className="portfolio-page writing-page">
-      <PageIntro kicker="Writing" title={<>Ideas I keep<br /><em>coming back to</em></>} copy="Technical essays and research notes about systems, parallelism, and the humans who build them." />
+      <PageIntro kicker="Blog" title={<>A research diary,<br /><em>with room to think</em></>} copy="Technical essays, learning notes, experiments, and questions about systems, parallelism, and the humans who build them." />
       <FeaturedWriting onArticle={onArticle} compact />
+      <section className="blog-notes-link"><div><span className="kicker">From the notebook</span><h2>Systems basics: when parallel work pays off</h2><p>What CUDA coursework taught me about independent work, overhead, measurement boundaries, and why the fastest kernel is not automatically the fastest program.</p></div><button onClick={() => onNavigate("/notes/systems-basics")}>Read the research note <ArrowRight size={16} /></button></section>
     </main>
   );
 }
@@ -272,7 +276,7 @@ export function AboutPage() {
           <span className="kicker">A little about me</span><h2>Hello, I’m Flyness.</h2>
           <p className="large">I’m interested in what prevents parallel and heterogeneous systems from delivering the performance their hardware seems to promise.</p>
           <p>My questions grew out of operating-systems and parallel-processing coursework, research on LLM hallucination detection, and performance problems I encountered in industry. I use this space to document that continued learning carefully, including paths that are still unfinished.</p>
-          <div className="tiny-list"><span><Sparkles size={15} /> Parallel and heterogeneous computing</span><span><Sparkles size={15} /> Systems performance, operating systems, and distributed systems</span></div>
+          <div className="about-research-interests"><span className="kicker">Research interests</span><ul><li>Parallel and heterogeneous computing</li><li>Operating systems and systems performance</li><li>Distributed systems</li></ul></div>
         </div>
       </section>
     </main>

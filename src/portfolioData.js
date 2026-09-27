@@ -16,12 +16,6 @@ export const researchInterests = [
   },
 ];
 
-export const currentQuestions = [
-  "When does parallel execution repay the overhead required to coordinate it?",
-  "How can multi-sample hallucination detection be distributed efficiently?",
-  "Which abstractions hide performance costs from the people building systems?",
-];
-
 export const projects = [
   {
     slug: "selfcheckgpt",

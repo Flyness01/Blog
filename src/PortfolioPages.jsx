@@ -48,12 +48,12 @@ export function LearningBlogPage({ onNavigate, onArticle }) {
 
       <section className="learning-collection">
         <div className="section-heading">
-          <div><span className="kicker">Learning in public</span><h2>The work,<br /><em>as it unfolds</em></h2></div>
+          <div><span className="kicker">Writing</span><h2>The work,<br /><em>as it unfolds</em></h2></div>
           <p>Projects, notes, and published writing gathered in one place.</p>
         </div>
         <div className="learning-links">
-          <button onClick={() => onNavigate("/projects/selfcheckgpt")}><span>Project trail</span><ArrowRight /></button>
-          <button onClick={() => onNavigate("/notes/systems-basics")}><span>Systems basics</span><ArrowRight /></button>
+          <button onClick={() => onNavigate("/projects/selfcheckgpt")}><span>Efficient multi-sample hallucination detection</span><ArrowRight /></button>
+          <button onClick={() => onNavigate("/notes/systems-basics")}><span>When parallel work pays off</span><ArrowRight /></button>
         </div>
         <div className="collection-label"><span className="kicker">Latest writing</span></div>
         <FeaturedWriting onArticle={onArticle} compact />

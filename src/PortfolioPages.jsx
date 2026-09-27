@@ -299,7 +299,6 @@ export function ResumePage() {
         <div className="resume-row"><h3>Technical skills</h3><div className="resume-skills"><p><b>Languages</b> C/C++, CUDA C, Hack (HHVM), Python, JavaScript, SQL</p><p><b>Systems</b> GPU programming, memory hierarchies, synchronization, parallel work distribution, concurrency, backend reliability</p><p><b>Tools</b> Git, Linux/Unix, CI/CD, feature flags, PyTorch, Hugging Face Transformers, NumPy, pandas, scikit-learn</p></div></div>
         <div className="resume-row"><h3>Honors</h3><div><p>Top 5 Finalist, Future Tech Challenge at Apple Campus (2026) · 3rd Place, Entrepreneurship Pelican Cup (2026) · 3rd Place, Bayou Classic BizTech Challenge (2025–2026) · NSBE Highest Academic Achievement Award (2025) · Presidential Academic Scholarship · President’s List · Tapia 2024 Scholar</p></div></div>
         <div className="resume-row"><h3>Leadership</h3><div><p>NSBE Programs Chair (2024–2025) · Women in Technology Events Coordinator · African Students Association Secretary · ColorStack and Rewriting the Code fellow and participant</p></div></div>
-        <p className="resume-note">Public web résumé · Personal contact details omitted.</p>
       </section>
     </main>
   );

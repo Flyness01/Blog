@@ -3,11 +3,8 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 
 const navigation = [
   ["Home", "/"],
-  ["Research", "/research"],
-  ["Projects", "/projects"],
   ["Blog", "/blog"],
   ["Résumé", "/resume"],
-  ["About", "/about"],
 ];
 
 export function SiteHeader({ route, onNavigate, onSubscribe }) {
@@ -45,9 +42,7 @@ export function SiteFooter({ onNavigate, onSubscribe, onArticle }) {
         </div>
         <nav className="footer-nav" aria-label="Portfolio navigation">
           <span>Explore</span>
-          <button onClick={() => onNavigate("/research")}>Research</button>
-          <button onClick={() => onNavigate("/projects")}>Projects</button>
-          <button onClick={() => onNavigate("/notes")}>Notes</button>
+          <button onClick={() => onNavigate("/")}>Home</button>
           <button onClick={() => onNavigate("/blog")}>Blog</button>
           <button onClick={() => onNavigate("/resume")}>Résumé</button>
           <button onClick={onSubscribe}>Subscribe</button>

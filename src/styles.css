@@ -115,6 +115,35 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
 }
 .doodle span { font-size: 40px; display: block; transform: rotate(20deg); }
 
+.professional-home { background: #f8f4ef; }
+.profile-hero { min-height: 690px; padding: 105px max(32px, calc((100vw - 1116px) / 2)); display: grid; grid-template-columns: .78fr 1.22fr; gap: 80px; align-items: center; }
+.profile-hero figure { margin: 0; height: 510px; overflow: hidden; background: #d9cdca; position: relative; }
+.profile-hero figure::after { content: ""; position: absolute; inset: 16px; border: 1px solid rgba(255,255,255,.7); }
+.profile-hero img { width: 100%; height: 100%; object-fit: cover; object-position: 56% center; }
+.profile-intro h1 { margin: 22px 0 30px; max-width: 720px; font-size: clamp(48px, 5.8vw, 76px); line-height: 1; }
+.profile-intro h1 em { color: var(--plum); }
+.profile-lede { font-family: "DM Serif Display", serif; color: var(--ink) !important; font-size: 22px !important; line-height: 1.55 !important; }
+.profile-intro > p { max-width: 700px; color: #685c65; line-height: 1.78; }
+.profile-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 32px; }
+.profile-actions button, .profile-actions a { min-height: 44px; border: 1px solid var(--ink); background: var(--ink); color: #fff; padding: 11px 15px; display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer; font-size: 12px; }
+.profile-actions .quiet-action, .profile-actions a { background: transparent; color: var(--ink); }
+.profile-interests { padding: 100px max(32px, calc((100vw - 1116px) / 2)); background: #302830; color: #f8f4ef; display: grid; grid-template-columns: .85fr 1.15fr; gap: 90px; }
+.profile-interests h2 { margin-top: 20px; font-size: clamp(40px, 5vw, 64px); line-height: 1; }
+.profile-interests h2 em { color: #d9a8b6; }
+.profile-interests .kicker { color: #d9a8b6; }
+.profile-interest-simple { align-self: center; border-top: 1px solid #5b4f58; }
+.profile-interest-simple span { display: block; padding: 24px 0; border-bottom: 1px solid #5b4f58; color: #f8f4ef; font-family: "DM Serif Display", serif; font-size: clamp(23px, 2.5vw, 31px); line-height: 1.25; }
+.profile-work { padding: 105px max(32px, calc((100vw - 1116px) / 2)); background: #eee5dc; }
+.profile-section-heading { margin-bottom: 55px; }
+.profile-section-heading h2 { margin-top: 18px; font-size: clamp(40px, 5vw, 62px); }
+.profile-work-list { border-top: 1px solid #cfc1c2; }
+.profile-work-list button { width: 100%; border: 0; border-bottom: 1px solid #cfc1c2; background: transparent; color: var(--ink); padding: 31px 4px; display: grid; grid-template-columns: 180px 1fr 1fr 35px; gap: 28px; text-align: left; align-items: center; cursor: pointer; }
+.profile-work-list button > span { color: var(--plum); text-transform: uppercase; letter-spacing: 1.1px; font-size: 8px; }
+.profile-work-list h3 { margin: 0; font-family: "DM Serif Display", serif; font-size: 25px; font-weight: 400; line-height: 1.2; }
+.profile-work-list p { margin: 0; color: #6d6169; line-height: 1.6; font-size: 13px; }
+.profile-work-list svg { color: var(--plum); transition: transform .2s ease; }
+.profile-work-list button:hover svg { transform: translateX(5px); }
+
 .portfolio-map { background: #eee5dc; padding: 105px max(32px, calc((100vw - 1116px) / 2)); }
 .light-heading .kicker { color: var(--plum); }
 .light-heading h2 { color: var(--ink); }
@@ -612,6 +641,15 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
   h1 { font-size: clamp(51px, 15vw, 72px); letter-spacing: -2px; }
   .hero-copy { font-size: 16px; }
   .doodle { display: none; }
+  .profile-hero { min-height: auto; padding: 70px 22px 80px; grid-template-columns: 1fr; gap: 45px; }
+  .profile-hero figure { height: 400px; }
+  .profile-intro h1 { font-size: clamp(45px, 13vw, 66px); }
+  .profile-lede { font-size: 19px !important; }
+  .profile-interests { padding: 80px 22px; grid-template-columns: 1fr; gap: 45px; }
+  .profile-work { padding: 80px 22px; }
+  .profile-work-list button { grid-template-columns: 1fr 30px; gap: 13px; }
+  .profile-work-list button > span, .profile-work-list button h3, .profile-work-list button p { grid-column: 1; }
+  .profile-work-list button svg { grid-column: 2; grid-row: 1 / 4; }
   .portfolio-map { padding: 80px 22px; }
   .map-grid { grid-template-columns: 1fr; }
   .map-grid button { min-height: 225px; }

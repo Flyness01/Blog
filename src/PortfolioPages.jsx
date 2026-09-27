@@ -3,26 +3,58 @@ import { ArrowRight, ArrowUpRight, BookOpen, Cpu, Gauge, Network } from "lucide-
 import CommentsSection from "./CommentsSection";
 import { notes, projects, researchInterests } from "./portfolioData";
 
-export function HomePage({ onNavigate, onArticle }) {
+export function ProfessionalHomePage({ onNavigate, onArticle }) {
+  return (
+    <main className="professional-home">
+      <section className="profile-hero">
+        <figure><img src={`${import.meta.env.BASE_URL}images/flyness-namatama.jpg`} alt="Flyness Namatama seated in a blue chair beside a window" /></figure>
+        <div className="profile-intro">
+          <span className="kicker">Flyness Namatama</span>
+          <h1>Software engineer studying<br /><em>how systems scale.</em></h1>
+          <p className="profile-lede">I am interested in how systems make effective use of parallel and heterogeneous hardware, and in the execution, memory, communication, and synchronization costs that shape real performance.</p>
+          <p>My interests grew from operating-systems and parallel-processing coursework, research on multi-sample LLM hallucination detection, and performance problems I encountered in industry. This profile collects the work; my blog keeps the learning process visible.</p>
+          <div className="profile-actions"><button onClick={() => onNavigate("/blog")}>Visit my learning blog <ArrowRight size={16} /></button><button className="quiet-action" onClick={() => onNavigate("/resume")}>Résumé</button><a href="https://github.com/Flyness01" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a></div>
+        </div>
+      </section>
+
+      <section className="profile-interests">
+        <div><span className="kicker">Current focus</span><h2>Research<br /><em>interests</em></h2></div>
+        <div className="profile-interest-simple"><span>Parallel &amp; heterogeneous computing</span><span>Operating systems &amp; performance</span><span>Distributed systems</span></div>
+      </section>
+
+      <section className="profile-work">
+        <div className="profile-section-heading"><span className="kicker">Selected work</span><h2>Learning made inspectable</h2></div>
+        <div className="profile-work-list">
+          <button onClick={() => onNavigate("/projects/selfcheckgpt")}><span>Research exploration</span><h3>Efficient multi-sample hallucination detection</h3><p>Controlled measurements of repeated local inference and shared-prefix KV-cache reuse.</p><ArrowRight /></button>
+          <button onClick={() => onNavigate("/notes/systems-basics")}><span>Foundational notebook</span><h3>Systems basics: when parallel work pays off</h3><p>CUDA, overhead, timing boundaries, correctness, and the questions I carried forward.</p><ArrowRight /></button>
+          <button onClick={onArticle}><span>Technical essay</span><h3>The hidden human in system design</h3><p>How developer expectations and hidden system behavior collide inside the Linux kernel.</p><ArrowRight /></button>
+        </div>
+      </section>
+
+    </main>
+  );
+}
+
+export function LearningBlogPage({ onNavigate, onArticle }) {
   return (
     <main>
       <section className="hero" id="home">
         <div className="eyebrow"><span /> Notes from a curious mind</div>
         <h1>I’m learning in public.<br /><em>Come sit with me.</em></h1>
-        <p className="hero-copy">I’m Flyness Namatama. This is my research notebook and personal portfolio—a place for systems questions, project trails, classwork, and ideas in progress.</p>
-        <button className="primary-button" onClick={() => onNavigate("/research")}>Follow the questions <span>→</span></button>
+        <p className="hero-copy">This is the less polished side of my work: systems questions, project trails, class notes, experiments, corrections, and ideas in progress.</p>
+        <button className="primary-button" onClick={() => onNavigate("/projects/selfcheckgpt")}>Follow a project trail <span>→</span></button>
         <div className="doodle" aria-hidden="true">curious<br />about it all <span>↝</span></div>
       </section>
 
       <section className="portfolio-map">
         <div className="section-heading light-heading">
-          <div><span className="kicker">A small map of this space</span><h2>Research, with<br /><em>room in the margins</em></h2></div>
+          <div><span className="kicker">A small map of this space</span><h2>Learning, with<br /><em>room in the margins</em></h2></div>
           <p>The polished work lives beside the questions, experiments, and class notes that helped shape it.</p>
         </div>
         <div className="map-grid">
-          <button className="map-card-no-icon" onClick={() => onNavigate("/research")}><span>Research</span><small>The areas and questions guiding my work.</small><ArrowRight /></button>
-          <button className="map-card-no-icon" onClick={() => onNavigate("/projects")}><span>Projects</span><small>Research, coursework, and engineering work.</small><ArrowRight /></button>
-          <button onClick={() => onNavigate("/blog")}><BookOpen /><span>Blog</span><small>Articles, research notes, and ideas still taking shape.</small><ArrowRight /></button>
+          <button className="map-card-no-icon" onClick={() => onNavigate("/projects/selfcheckgpt")}><span>Project trail</span><small>Experiments, measurements, corrections, and what I am trying next.</small><ArrowRight /></button>
+          <button className="map-card-no-icon" onClick={() => onNavigate("/notes/systems-basics")}><span>Systems basics</span><small>Foundations from coursework and the questions they helped me learn to ask.</small><ArrowRight /></button>
+          <button onClick={onArticle}><BookOpen /><span>Essay</span><small>Longer-form technical writing about systems and the people building them.</small><ArrowRight /></button>
         </div>
       </section>
 

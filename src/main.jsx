@@ -5,28 +5,19 @@ import ArticlePage from "./ArticlePage";
 import SubscribePage from "./SubscribePage";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 import {
-  AboutPage,
-  HomePage,
-  NotesPage,
+  LearningBlogPage,
   ProjectDetailPage,
-  ProjectsPage,
-  ResearchPage,
+  ProfessionalHomePage,
   ResumePage,
   SystemsBasicsPage,
-  WritingPage,
 } from "./PortfolioPages";
 import "./styles.css";
 
 const validRoutes = new Set([
   "/",
-  "/research",
-  "/projects",
-  "/notes",
   "/notes/systems-basics",
   "/blog",
-  "/articles",
   "/resume",
-  "/about",
   "/subscribe",
   "/writing/hidden-human",
   "/projects/selfcheckgpt",
@@ -35,8 +26,8 @@ const validRoutes = new Set([
 const getRoute = () => {
   if (window.location.hash === "#/writing/hidden-human") return "/writing/hidden-human";
   if (window.location.hash === "#/subscribe") return "/subscribe";
-  if (window.location.pathname === "/explorations") return "/notes";
-  if (window.location.pathname === "/articles") return "/blog";
+  if (["/research", "/about"].includes(window.location.pathname)) return "/";
+  if (["/projects", "/notes", "/explorations", "/articles"].includes(window.location.pathname)) return "/blog";
   return validRoutes.has(window.location.pathname) ? window.location.pathname : "/";
 };
 
@@ -72,15 +63,11 @@ function App() {
   const openArticle = () => navigate("/writing/hidden-human");
 
   const pages = {
-    "/": <HomePage onNavigate={navigate} onArticle={openArticle} />,
-    "/research": <ResearchPage onNavigate={navigate} />,
-    "/projects": <ProjectsPage onNavigate={navigate} />,
+    "/": <ProfessionalHomePage onNavigate={navigate} onArticle={openArticle} />,
     "/projects/selfcheckgpt": <ProjectDetailPage />,
-    "/notes": <NotesPage onNavigate={navigate} />,
     "/notes/systems-basics": <SystemsBasicsPage onNavigate={navigate} />,
-    "/blog": <WritingPage onArticle={openArticle} onNavigate={navigate} />,
+    "/blog": <LearningBlogPage onNavigate={navigate} onArticle={openArticle} />,
     "/resume": <ResumePage />,
-    "/about": <AboutPage />,
   };
 
   return (

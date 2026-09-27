@@ -63,7 +63,7 @@ function App() {
   const openArticle = () => navigate("/writing/hidden-human");
 
   const pages = {
-    "/": <ProfessionalHomePage onNavigate={navigate} onArticle={openArticle} />,
+    "/": <ProfessionalHomePage onNavigate={navigate} />,
     "/projects/selfcheckgpt": <ProjectDetailPage />,
     "/notes/systems-basics": <SystemsBasicsPage onNavigate={navigate} />,
     "/blog": <LearningBlogPage onNavigate={navigate} onArticle={openArticle} />,

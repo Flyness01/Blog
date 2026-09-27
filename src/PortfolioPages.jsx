@@ -3,7 +3,7 @@ import { ArrowRight, ArrowUpRight, BookOpen, Cpu, Gauge, Network } from "lucide-
 import CommentsSection from "./CommentsSection";
 import { notes, projects, researchInterests } from "./portfolioData";
 
-export function ProfessionalHomePage({ onNavigate, onArticle }) {
+export function ProfessionalHomePage({ onNavigate }) {
   return (
     <main className="professional-home">
       <section className="profile-hero">
@@ -26,8 +26,6 @@ export function ProfessionalHomePage({ onNavigate, onArticle }) {
         <div className="profile-section-heading"><span className="kicker">Selected work</span><h2>Learning made inspectable</h2></div>
         <div className="profile-work-list">
           <button onClick={() => onNavigate("/projects/selfcheckgpt")}><span>Research exploration</span><h3>Efficient multi-sample hallucination detection</h3><p>Controlled measurements of repeated local inference and shared-prefix KV-cache reuse.</p><ArrowRight /></button>
-          <button onClick={() => onNavigate("/notes/systems-basics")}><span>Foundational notebook</span><h3>Systems basics: when parallel work pays off</h3><p>CUDA, overhead, timing boundaries, correctness, and the questions I carried forward.</p><ArrowRight /></button>
-          <button onClick={onArticle}><span>Technical essay</span><h3>The hidden human in system design</h3><p>How developer expectations and hidden system behavior collide inside the Linux kernel.</p><ArrowRight /></button>
         </div>
       </section>
 

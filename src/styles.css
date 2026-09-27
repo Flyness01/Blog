@@ -313,15 +313,14 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
 .writing-page .page-intro { background: #eee5dc; }
 .featured-standalone { padding-top: 90px; }
 .learning-collection { background: #302830; color: #f8f4ef; padding: 105px max(32px, calc((100vw - 1116px) / 2)); }
-.learning-collection .section-heading { margin-bottom: 42px; }
-.learning-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 64px; }
-.learning-links button { border: 1px solid rgba(248,244,239,.22); border-top: 2px solid #c17691; background: rgba(248,244,239,.05); color: #f8f4ef; padding: 25px 28px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: background .2s ease, transform .2s ease; }
-.learning-links button:nth-child(2) { border-top-color: #aab59c; }
-.learning-links button:hover { background: rgba(248,244,239,.1); transform: translateY(-2px); }
+.learning-links { margin-top: 20px; border-top: 1px solid rgba(248,244,239,.25); }
+.learning-links button { width: 100%; border: 0; border-bottom: 1px solid rgba(248,244,239,.25); background: transparent; color: #f8f4ef; padding: 25px 4px; display: flex; align-items: center; justify-content: space-between; text-align: left; cursor: pointer; transition: color .2s ease, padding .2s ease; }
+.learning-links button:hover { color: #e2a9ba; padding-left: 10px; }
 .learning-links span { font-family: "DM Serif Display", serif; font-size: 25px; }
 .learning-links svg { color: #d08aa3; }
 .collection-label { margin-bottom: 18px; }
 .learning-collection .featured-standalone { padding: 0; background: transparent; }
+.previous-writing { margin-top: 70px; }
 .blog-notes-link { padding: 78px max(32px, calc((100vw - 960px) / 2)); background: #f3dfe3; display: flex; align-items: end; justify-content: space-between; gap: 55px; }
 .blog-notes-link h2 { margin: 18px 0; font-size: clamp(34px, 4vw, 50px); max-width: 620px; }
 .blog-notes-link p { color: #685c65; line-height: 1.75; max-width: 650px; }
@@ -715,7 +714,7 @@ h1 em, h2 em { color: var(--plum); font-weight: 400; }
   .coursework-note { flex-direction: column; }
   .featured { padding: 80px 22px; }
   .learning-collection { padding: 80px 22px; }
-  .learning-links { grid-template-columns: 1fr; margin-bottom: 50px; }
+  .previous-writing { margin-top: 52px; }
   .section-heading { display: block; }
   .section-heading p { margin-top: 26px; }
   .lead-post { grid-template-columns: 1fr; }

@@ -42,21 +42,19 @@ export function LearningBlogPage({ onNavigate, onArticle }) {
         <div className="eyebrow"><span /> Notes from a curious mind</div>
         <h1>I’m learning in public.<br /><em>Come sit with me.</em></h1>
         <p className="hero-copy">This is the less polished side of my work: systems questions, project trails, class notes, experiments, corrections, and ideas in progress.</p>
-        <button className="primary-button" onClick={() => onNavigate("/projects/selfcheckgpt")}>Follow a project trail <span>→</span></button>
         <div className="doodle" aria-hidden="true">curious<br />about it all <span>↝</span></div>
       </section>
 
       <section className="learning-collection">
-        <div className="section-heading">
-          <div><span className="kicker">Writing</span><h2>The work,<br /><em>as it unfolds</em></h2></div>
-          <p>Projects, notes, and published writing gathered in one place.</p>
-        </div>
-        <div className="learning-links">
-          <button onClick={() => onNavigate("/projects/selfcheckgpt")}><span>Efficient multi-sample hallucination detection</span><ArrowRight /></button>
-          <button onClick={() => onNavigate("/notes/systems-basics")}><span>When parallel work pays off</span><ArrowRight /></button>
-        </div>
         <div className="collection-label"><span className="kicker">Latest writing</span></div>
         <FeaturedWriting onArticle={onArticle} compact />
+        <div className="previous-writing">
+          <span className="kicker">Previous writing</span>
+          <div className="learning-links">
+            <button onClick={() => onNavigate("/projects/selfcheckgpt")}><span>Efficient multi-sample hallucination detection</span><ArrowRight /></button>
+            <button onClick={() => onNavigate("/notes/systems-basics")}><span>When parallel work pays off</span><ArrowRight /></button>
+          </div>
+        </div>
       </section>
       <CommentsSection postSlug="general" kicker="In the margins" description="Questions, reflections, suggestions, and thoughts about this space are welcome here." />
     </main>

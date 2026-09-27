@@ -1,9 +1,9 @@
 import React from "react";
-import { ArrowRight, ArrowUpRight, BookOpen, Cpu, Gauge, Network } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Cpu, Gauge, Network } from "lucide-react";
 import CommentsSection from "./CommentsSection";
 import { notes, projects, researchInterests } from "./portfolioData";
 
-export function ProfessionalHomePage({ onNavigate }) {
+export function ProfessionalHomePage({ onNavigate, onArticle }) {
   return (
     <main className="professional-home">
       <section className="profile-hero">
@@ -25,7 +25,9 @@ export function ProfessionalHomePage({ onNavigate }) {
       <section className="profile-work">
         <div className="profile-section-heading"><span className="kicker">Selected work</span><h2>Learning made inspectable</h2></div>
         <div className="profile-work-list">
-          <button onClick={() => onNavigate("/projects/selfcheckgpt")}><span>Research exploration</span><h3>Efficient multi-sample hallucination detection</h3><p>Controlled measurements of repeated local inference and shared-prefix KV-cache reuse.</p><ArrowRight /></button>
+          <button onClick={() => onNavigate("/projects/selfcheckgpt")}><h3>Efficient multi-sample hallucination detection</h3><p>Controlled measurements of repeated local inference and shared-prefix KV-cache reuse.</p><ArrowRight /></button>
+          <button onClick={() => onNavigate("/notes/systems-basics")}><h3>Systems basics: when parallel work pays off</h3><p>CUDA, overhead, timing boundaries, correctness, and the questions I carried forward.</p><ArrowRight /></button>
+          <button onClick={onArticle}><h3>The hidden human in system design</h3><p>How developer expectations and hidden system behavior collide inside the Linux kernel.</p><ArrowRight /></button>
         </div>
       </section>
 
@@ -42,18 +44,6 @@ export function LearningBlogPage({ onNavigate, onArticle }) {
         <p className="hero-copy">This is the less polished side of my work: systems questions, project trails, class notes, experiments, corrections, and ideas in progress.</p>
         <button className="primary-button" onClick={() => onNavigate("/projects/selfcheckgpt")}>Follow a project trail <span>→</span></button>
         <div className="doodle" aria-hidden="true">curious<br />about it all <span>↝</span></div>
-      </section>
-
-      <section className="portfolio-map">
-        <div className="section-heading light-heading">
-          <div><span className="kicker">A small map of this space</span><h2>Learning, with<br /><em>room in the margins</em></h2></div>
-          <p>The polished work lives beside the questions, experiments, and class notes that helped shape it.</p>
-        </div>
-        <div className="map-grid">
-          <button className="map-card-no-icon" onClick={() => onNavigate("/projects/selfcheckgpt")}><span>Project trail</span><small>Experiments, measurements, corrections, and what I am trying next.</small><ArrowRight /></button>
-          <button className="map-card-no-icon" onClick={() => onNavigate("/notes/systems-basics")}><span>Systems basics</span><small>Foundations from coursework and the questions they helped me learn to ask.</small><ArrowRight /></button>
-          <button onClick={onArticle}><BookOpen /><span>Essay</span><small>Longer-form technical writing about systems and the people building them.</small><ArrowRight /></button>
-        </div>
       </section>
 
       <FeaturedWriting onArticle={onArticle} />
